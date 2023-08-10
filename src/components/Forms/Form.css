@@ -1,0 +1,225 @@
+.form-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  max-width: 370px;
+  padding: 0 0.75em;
+}
+
+.form-title {
+  margin-bottom: 24px;
+  letter-spacing: 1.4px;
+}
+
+.form-title h2 {
+  color: var(--clr-text-2);
+  font-family: "Inter", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.form-title p {
+  font-family: "Poppins", sans-serif;
+  line-height: 24px;
+}
+.inputfield {
+  margin-bottom: 24px;
+  position: relative;
+}
+.inputfield,
+.inputfield input,
+.inputfield textarea {
+  height: 50px;
+  width: 100%;
+}
+
+.inputfield label {
+  color: var(--clr-text-2);
+  left: 11px;
+  padding: 0 5px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.4s;
+}
+
+.inputfield input,
+.inputfield textarea {
+  border-radius: 5px;
+  border: 1px solid var(--clr-text-2);
+  font-size: 16px;
+  padding: 10px 16px;
+  background: transparent;
+}
+.inputfield.password input {
+  padding-right: 36px;
+}
+.inputfield span {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.inputfield span svg {
+  color: var(--clr-text-2);
+  width: 20px;
+}
+
+.inputfield input:focus ~ span svg,
+.inputfield-value input ~ span svg {
+  color: var(--clr-success-500);
+}
+.inputfield input:focus ~ label,
+.inputfield-value input ~ label,
+.inputfield textarea:focus ~ label,
+.inputfield-value textarea ~ label {
+  background-color: var(--clr-primary-0);
+  color: var(--clr-success-500);
+  top: 0;
+}
+.inputfield input:focus,
+.inputfield-value input {
+  border: 2px solid var(--clr-success-500);
+}
+
+.form-btns {
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  justify-content: space-between;
+}
+
+.form-btns {
+  flex-direction: column;
+}
+.form-btns .btn {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-btns a.pageRoute {
+  border-bottom: 1px solid var(--clr-text-2);
+  color: var(--clr-text-2);
+  margin-left: 1rem;
+}
+
+.form-btns a {
+  color: var(--clr-secondary-2);
+  font-family: "Poppins", sans-serif;
+  line-height: 24px;
+}
+
+.form-btns a:hover {
+  color: var(--clr-secondary-2);
+}
+
+.form-btns p {
+  margin-top: 0.5rem;
+}
+
+/* CSS mainly for Contact Form */
+.form-container.contact-form {
+  border-radius: 4px;
+  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.05);
+
+  padding: 2.5rem 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.contact-form form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+.contact-form .inputfield span {
+  position: static;
+  color: var(--clr-secondary-2);
+}
+.contact-form .inputfield input,
+.contact-form .inputfield textarea {
+  background: var(--clr-secondary-0);
+  margin-bottom: 0;
+  resize: none;
+}
+.contact-form input {
+  border: none;
+}
+
+.contact-form textarea {
+  height: 150px;
+  border: none;
+}
+
+.contact-form .inputfield input:focus,
+.contact-form .inputfield-value input,
+.inputfield textarea:focus,
+.inputfield-value textarea {
+  border: 2px solid var(--clr-text-1);
+}
+.contact-form .inputfield input:focus ~ label,
+.contact-form .inputfield-value input ~ label,
+.inputfield textarea:focus ~ label,
+.inputfield-value textarea ~ label {
+  background-color: var(--clr-secondary-0);
+  color: var(--clr-text-2);
+}
+.contact-form .btn {
+  margin-left: auto;
+  max-width: fit-content;
+  margin-top: 76px;
+}
+/* CSS mainly for Contact Form */
+
+@media screen and (min-width: 769px) {
+  .form-container {
+    margin-right: 0;
+    margin-top: 0;
+  }
+
+  .form-container.contact-form {
+    max-width: 1000px;
+  }
+  .contact-form form {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-form .btn {
+    margin-top: 0;
+    grid-column: 1/3;
+  }
+  .contact-form .phoneNumber {
+    grid-column: 1/3;
+  }
+  .contact-form .message {
+    height: auto;
+    grid-column: 1/3;
+  }
+  .form-title {
+    margin-bottom: 40px;
+  }
+  .form-title h2 {
+    font-size: 2.25rem;
+    margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-form form {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .contact-form .btn {
+    margin-top: 0;
+    grid-column: 1/4;
+  }
+  .contact-form .phoneNumber {
+    grid-column: auto;
+  }
+  .contact-form .message {
+    height: auto;
+    grid-column: 1/4;
+  }
+}

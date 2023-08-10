@@ -1,0 +1,44 @@
+.form-page {
+  align-items: center;
+  display: flex;
+  margin-top: 3rem;
+}
+
+.contact-page {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.page-not-found {
+  align-items: center;
+  color: var(--clr-text-2);
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: center;
+  text-align: center;
+}
+.page-not-found_content {
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+.page-not-found h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 35px;
+  font-weight: 500;
+  letter-spacing: 3.3px;
+  line-height: 55px;
+}
+@media (min-width: 992px) {
+  .contact-page {
+    grid-template-columns: 35% 62%;
+    gap: 3%;
+  }
+
+  .page-not-found h1 {
+    font-size: 110px;
+    line-height: 115px;
+  }
+}

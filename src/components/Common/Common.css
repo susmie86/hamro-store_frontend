@@ -1,0 +1,197 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1440px;
+  padding: 0 0.75em;
+}
+
+/* Button CSS */
+.btn {
+  background-color: var(--clr-btn-2);
+  border-radius: 4px;
+  border: none;
+  color: var(--clr-text-0);
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  line-height: 24px;
+  padding: 1em 2.5em;
+  text-transform: capitalize;
+  transition: 0.4s;
+}
+
+.btn:hover {
+  /* background-color: var(--clr-btn-hover-2); */
+  opacity: 0.5;
+}
+
+.btn.secondary {
+  background: transparent;
+  overflow: hidden;
+  padding: 0 0 0.5em 0;
+  position: relative;
+}
+
+.btn.secondary::after {
+  background: rgba(255, 251, 251, 0.5);
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: translateX(-100%);
+  transition: all 400ms ease-in-out;
+  width: 100%;
+}
+
+.btn.secondary:hover::after {
+  transform: translateX(0%);
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: var(--clr-text-2);
+}
+/* Button CSS */
+/* Log In SIde Image css */
+.side_image {
+  display: none;
+  width: 60%;
+  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+}
+.side_image img {
+  width: 100%;
+}
+/* Log In SIde Image css */
+
+/* Card CSS */
+.card {
+  border-radius: 5px;
+  color: var(--clr-text-2);
+  font-family: "Poppins", sans-serif;
+  line-height: 24px;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: center;
+  text-transform: capitalize;
+}
+.card h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 1.28px;
+  margin-bottom: 12px;
+}
+/* Card CSS */
+
+/* RoadMap / BreadCrumbs CSS */
+.roadmap {
+  margin: 40px 0 21px;
+  display: flex;
+  color: var(--text-2);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  letter-spacing: 1.28px;
+  line-height: 21px;
+}
+.roadmap_link {
+  padding: 12px;
+  transition: 0.4s;
+}
+.roadmap_link a {
+  margin-right: 12px;
+  padding-bottom: 5px;
+}
+.roadmap_link a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.703);
+}
+.roadmap_link span {
+  opacity: 0.5;
+  text-transform: capitalize;
+}
+/* RoadMap / BreadCrumbs CSS */
+/* Section Title CSS */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 12px;
+}
+.section-title {
+  color: var(--clr-secondary-2);
+  font-family: "Poppins";
+  /* font-size: 1rem; */
+  font-weight: 600;
+  line-height: 20px;
+  margin-left: 16px;
+  padding: 10px 0 10px 16px;
+  position: relative;
+  text-transform: capitalize;
+}
+
+.section-title::before {
+  background-color: var(--clr-secondary-2);
+  border-radius: 4px;
+  content: "";
+  height: 100%;
+  left: -18px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+/* Section Title CSS */
+/* Section Header CSS */
+.section-subtitle {
+  color: var(--clr-text-2);
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1.28px;
+  line-height: 48px;
+  text-transform: capitalize;
+  transition: all 0.5s ease-in-out;
+}
+
+.category-card {
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  gap: 16px;
+  line-height: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px 56px;
+  stroke: var(--clr-text-2);
+  transition: all 0.4s ease-in-out;
+  width: 170px;
+}
+
+.category-card:hover {
+  background-color: var(--clr-secondary-2);
+  border: none;
+  color: var(--clr-text-0);
+  stroke: var(--clr-text-0);
+}
+/* Section Header CSS */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 5%;
+  }
+  .side_image {
+    display: block;
+  }
+  .section-header {
+    gap: 24px;
+  }
+  .section-subtitle {
+    font-size: 2.25rem;
+  }
+}

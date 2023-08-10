@@ -1,0 +1,76 @@
+.home-page hr {
+  border: 0.5px solid var(--clr-text-2);
+  opacity: 0.25;
+  margin: 60px auto;
+  /* border-color: red; */
+}
+
+.product-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.product-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 30px;
+  transition: all 4s ease-in-out;
+}
+
+.section-bottom {
+  align-self: center;
+}
+
+/* Category CSS */
+
+/* Category CSS */
+
+/* New Arrivals css  */
+/* New Arrivals css  */
+
+@media (min-width: 475px) {
+  .product-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+@media (min-width: 610px) {
+  .product-list {
+    grid-template-columns: 50% 50%;
+  }
+  .product-list.new-arrivals {
+    grid-template-columns: 48% 48%;
+  }
+}
+
+@media (min-width: 992px) {
+  .product-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .product-list.new-arrivals {
+    grid-template-columns: 48% 24% 24%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .product-list.new-arrivals {
+    grid-template-columns: 48% 24% 24%;
+  }
+
+  .category {
+    gap: 15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}

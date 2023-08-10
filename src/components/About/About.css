@@ -1,0 +1,226 @@
+.section {
+  margin-bottom: 70px;
+}
+/* About Company Details Section */
+.about__history {
+  color: var(--clr-text-2);
+  font-family: "Poppins", sans-serif;
+  line-height: 26px;
+  max-width: 525px;
+}
+
+.about__history h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 2.375rem;
+  font-weight: 600;
+  letter-spacing: 3.24px;
+  line-height: 64px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.about__history p {
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+}
+.about__img {
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100%;
+}
+.about__img img {
+  width: 100%;
+}
+/* About Company Details Section */
+/* Cards CSS */
+.card-list {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr;
+}
+/* Style for Team Section */
+.team {
+  border-radius: 5px;
+  border: 2px solid var(--clr-primary-1);
+  max-width: 470px;
+  position: relative;
+}
+.team:hover .team-content {
+  transform: translateY(0);
+}
+.team-img img {
+  border-radius: 5px;
+  max-height: 400px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.team-content {
+  bottom: 0;
+  padding-top: 1rem;
+  width: 100%;
+  background-color: #ffffffe2;
+  position: absolute;
+  transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transform: translateY(100%);
+}
+
+.team-content h3,
+.team-content p {
+  margin-bottom: 8px;
+}
+
+.team-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.social-icon {
+  padding: 5px;
+}
+/* Style for Team Section */
+
+/* Style for Feature section */
+.feat {
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  max-width: 270px;
+  padding: 2rem 35px;
+  transition: all 0.5s;
+}
+
+/* CSS forFeature card on hover */
+.feat:hover {
+  background-color: var(--clr-secondary-2);
+  color: var(--clr-primary-0);
+}
+
+.feat:hover .card__icon .moneyBag,
+.feat:hover .card__icon .shopping-bag {
+  fill: var(--clr-primary-1);
+}
+.feat:hover svg {
+  background-color: var(--clr-primary-0);
+  stroke: var(--clr-primary-1);
+}
+/* CSS for Feature card on hover */
+.feat.Shopping-Bag,
+.feat.Money-Bag {
+  padding: 2rem 15px;
+}
+
+/* CSS for Service card */
+.service {
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 2rem 0.75rem;
+}
+.service h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+/* CSS for Service card */
+
+/* CSS for Icons in Service and Feature */
+.card__icon {
+  margin-bottom: 24px;
+}
+
+.card__icon {
+  align-items: center;
+  border-radius: 100%;
+  border: 10px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  overflow: hidden;
+  width: 80px;
+}
+.card__icon svg {
+  background-color: black;
+  color: var(--clr-primary-0);
+  height: 100%;
+  padding: 10px;
+  stroke: rgb(244, 244, 244);
+  width: 100%;
+}
+
+.card__icon .moneyBag,
+.card__icon .shopping-bag {
+  fill: var(--clr-primary-0);
+}
+/* CSS for Icons in Service and Feature */
+
+@media (min-width: 769px) {
+  /* Company History Section CSS */
+  .about {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+  .about__history {
+    width: 40%;
+  }
+  .about__img {
+    width: 58%;
+  }
+  /* Company History Section CSS */
+  /* Style for Team Section */
+  .card-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  .card h3 {
+    font-size: 2rem;
+  }
+  /* Style for Team Section */
+  .service h3 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Company History Section CSS */
+  .about__history h1 {
+    font-size: 3.375rem;
+  }
+  .about__history p {
+    font-size: 1rem;
+  }
+  .about__history {
+    padding-right: 20px;
+    width: 40%;
+  }
+  .about__img {
+    width: 56%;
+  }
+  /* Company History Section CSS */
+  /* Style for Team Section */
+  .card-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  /* Style for Team Section */
+}
+
+@media (min-width: 1200px) {
+  .about__history h1 {
+    margin-bottom: 40px;
+  }
+  .about__history p {
+    margin-bottom: 24px;
+  }
+  /* Style for Team Section */
+  .card-list.feature {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  /* Style for Team Section */
+}
