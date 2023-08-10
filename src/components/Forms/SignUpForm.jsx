@@ -17,10 +17,11 @@ function SignUpForm() {
   const [errors, setErrors] = useState({});
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true);
+  let isFormValid = true;
 
   useState(() => {
     console.log(errors)
-  }, [errors])
+  }, [errors, isFormValid])
 
   //   Function for Showing and Hiding password
   const showPassword = () => {
@@ -63,8 +64,7 @@ function SignUpForm() {
   const formSignUpHandler = (event) => {
     event.preventDefault();
     // Form Validation starts here
-    toast.success("Hello world!!!");
-    let isFormValid = true;
+    // console.log(errors)
     formDataValidator(formData, setErrors)
     for (const error in errors) {
       if (errors[error]) {
@@ -72,7 +72,7 @@ function SignUpForm() {
         break;
       }
     }
-
+    
     if (isFormValid) {
       // Store form data to local storage
       setToLocalStorage("user", formData);
@@ -82,6 +82,8 @@ function SignUpForm() {
         password: "",
         confirmPassword: "",
       });
+    } else {
+      toast.error("Sign Up failed.");
     }
   }
   return (
