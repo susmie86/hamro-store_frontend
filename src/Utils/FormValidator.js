@@ -1,3 +1,4 @@
+const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 export default function formDataValidator({ name, emailOrPhone, password, confirmPassword }, setErrors) {
     // Validate UserName Field
     if (name.trim() === '') {
@@ -15,6 +16,10 @@ export default function formDataValidator({ name, emailOrPhone, password, confir
         setErrors(prevErrors => {
             return { ...prevErrors, email: "Email is required." }
         })
+    } else if (!emailReg.test(emailOrPhone)) {
+        setErrors(prevErrors => {
+            return { ...prevErrors, email: "Email is not valid." }
+        })
     } else {
         setErrors(prevErrors => {
             return { ...prevErrors, email: "" }
@@ -22,9 +27,9 @@ export default function formDataValidator({ name, emailOrPhone, password, confir
     }
 
     // Validate password field
-    if (password.trim() === '') {
+    if (password.trim() === '' || password.length < 8) {
         setErrors(prevErrors => {
-            return { ...prevErrors, password: "password is required." }
+            return { ...prevErrors, password: "Password must be of atleast 8 characters." }
         });
     } else {
         setErrors(prevErrors => {
@@ -38,7 +43,7 @@ export default function formDataValidator({ name, emailOrPhone, password, confir
         })
     } else {
         setErrors(prevErrors => {
-            return {...prevErrors, confirmPassword: ""}
+            return { ...prevErrors, confirmPassword: "" }
         })
     }
 

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Button from "../Common/Button";
-import { setToLocalStorage } from "../../Utils/localStorage";
+import { getFromLocalStorage, setToLocalStorage } from "../../Utils/localStorage";
 import { NavLink } from "react-router-dom";
 import formDataValidator from "../../Utils/FormValidator";
 import { toast } from "react-toastify";
@@ -16,12 +16,40 @@ function SignUpForm() {
   });
   const [errors, setErrors] = useState({});
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-  const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true);
+  const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true); //to hide and display confirm password
+  const [isFormSubmitted, setFormSubmitted] = useState(false); // to check if user clicked the submit button or not
   let isFormValid = true;
 
-  useState(() => {
-    console.log(errors)
-  }, [errors, isFormValid])
+  // Based on validation set data on local storage
+  useEffect(() => {
+    for (const error in errors) {
+      if (errors[error]) {
+        isFormValid = false;
+        break;
+      }
+    }
+
+    if (isFormValid) {
+      // to Prevent form data to be stored in local storage without submit
+      if (isFormSubmitted)
+        setToLocalStorage("user", formData);
+      // to check if form data is stored in local storage or not
+      if (getFromLocalStorage("user"))
+        toast.success("Sign up successfull.")
+      // Clear inputfield after form submission
+      setFormData({
+        name: "",
+        emailOrPhone: "",
+        password: "",
+        confirmPassword: "",
+      });
+
+    } else {
+      // If signup failed. give a toast message
+      toast.error("Sign Up failed.");
+    }
+    // console.log(errors)
+  }, [errors]);
 
   //   Function for Showing and Hiding password
   const showPassword = () => {
@@ -60,32 +88,13 @@ function SignUpForm() {
     });
   };
 
-  // Add User data to local storage
+  // Function to check If the form is valid or not.
   const formSignUpHandler = (event) => {
     event.preventDefault();
-    // Form Validation starts here
-    // console.log(errors)
+    setFormSubmitted(true); // tells that the form submit button is clicked.
     formDataValidator(formData, setErrors)
-    for (const error in errors) {
-      if (errors[error]) {
-        isFormValid = false;
-        break;
-      }
-    }
-    
-    if (isFormValid) {
-      // Store form data to local storage
-      setToLocalStorage("user", formData);
-      setFormData({
-        name: "",
-        emailOrPhone: "",
-        password: "",
-        confirmPassword: "",
-      });
-    } else {
-      toast.error("Sign Up failed.");
-    }
   }
+
   return (
     <div className="form-container">
 
@@ -99,7 +108,7 @@ function SignUpForm() {
         {/* User Name Input FIeld */}
         <div
           className={`inputfield ${formData.name.trim() !== "" ? "inputfield-value" : ""
-            }`}
+            } ${errors.name ? "error-input" : ""}`}
         >
           <input
             type="text"
@@ -109,12 +118,13 @@ function SignUpForm() {
             onChange={nameChangeHanlder}
           />
           <label htmlFor="name">Name</label>
+          {errors.name && <p>{errors.name}</p>}
         </div>
 
         {/* User Email or Phone Number Field */}
         <div
           className={`inputfield ${formData.emailOrPhone.trim() !== "" ? "inputfield-value" : ""
-            }`}
+            } ${errors.email ? "error-input" : ""}`}
         >
           <input
             type="text"
@@ -124,12 +134,13 @@ function SignUpForm() {
             onChange={emailChangeHanlder}
           />
           <label htmlFor="email">Email or Phone Number</label>
+          {errors.email && <p>{errors.email}</p>}
         </div>
 
         {/* User Password Input Field */}
         <div
           className={`inputfield password ${formData.password.trim() !== "" ? "inputfield-value" : ""
-            }`}
+            } ${errors.password ? "error-input" : ""}`}
         >
           <input
             type={`${isPasswordHidden ? "password" : "text"}`}
@@ -142,10 +153,11 @@ function SignUpForm() {
           <span onClick={showPassword}>
             <FontAwesomeIcon icon={isPasswordHidden ? faEye : faEyeSlash} />
           </span>
+          {errors.password && <p>{errors.password}</p>}
         </div>
         <div
           className={`inputfield password ${formData.confirmPassword.trim() !== "" ? "inputfield-value" : ""
-            }`}
+            } ${errors.confirmPassword ? "error-input" : ""}`}
         >
           <input
             type={`${isConfirmPasswordHidden ? "password" : "text"}`}
@@ -160,6 +172,7 @@ function SignUpForm() {
               icon={isConfirmPasswordHidden ? faEye : faEyeSlash}
             />
           </span>
+          {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         </div>
         <div className="form-btns">
           <Button type="submit" classname="primary">

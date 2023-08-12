@@ -223,3 +223,21 @@
     grid-column: 1/4;
   }
 }
+
+/* For Error showing */
+.inputfield.error-input {
+  margin-bottom: 40px;
+}
+.inputfield.error-input input {
+  border: 1px solid red;
+}
+
+.inputfield.error-input label,
+.inputfield.error-input p {
+  color: red;
+}
+
+.inputfield.error-input p {
+  padding: 5px 0;
+  padding-left: 15px;
+}
