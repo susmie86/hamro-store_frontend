@@ -9,7 +9,6 @@ function Button({ children, type, classname, onClick }) {
     if (type === "action") {
       onClick();
     }
-    console.log(type)
   };
   return (
     <button type={type} className={`btn ${classname}`} onClick={handleClick}>

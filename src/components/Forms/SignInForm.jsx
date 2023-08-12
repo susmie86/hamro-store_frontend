@@ -1,15 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Form.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { NavLink } from "react-router-dom";
 import { getFromLocalStorage } from "../../Utils/localStorage";
 import Button from "../Common/Button";
+import formDataValidator from "../../Utils/FormValidator";
+import { useAppContext } from "../../Context/AppContext"
+import { toast } from "react-toastify";
 
 function SignInForm() {
   const [formData, setFormData] = useState({ emailOrPhone: "", password: "" });
+  const [errors, setErrors] = useState({});
   let [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  let [isFormSubmitted, setFormSubmitted] = useState(false);
+  let isFormValid = true;
 
+  const { state, dispatch } = useAppContext();
+
+  useEffect(() => {
+    for (const error in errors) {
+      if (errors[error]) {
+        isFormValid = false;
+        break;
+      }
+    }
+    if (isFormValid) {
+      const dataInLocalStorage = getFromLocalStorage("user");
+      if (isFormSubmitted) {
+        console.log(dataInLocalStorage);
+        dispatch({ type: "ADD_USER", payload: dataInLocalStorage });
+        console.log(dataInLocalStorage);
+
+      }
+      if (state.user?.name) {
+        console.log(state.user)
+        toast.success("Log in successfull");
+      }
+      setFormData({
+        emailOrPhone: "",
+        password: ""
+      });
+    } else {
+      toast.error("Log in failed.");
+    }
+  }, [errors, state.user?.uuid])
   // functions for setting handling change in input field
   const emailChangeHanlder = (event) => {
     setFormData((prevFormData) => {
@@ -31,11 +66,8 @@ function SignInForm() {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    const dataFromLocalStorage = getFromLocalStorage("user");
-    if(formData.emailOrPhone === dataFromLocalStorage.emailOrPhone) {
-      console.log(`hello ${dataFromLocalStorage.name} `)
-    }
-    console.log(dataFromLocalStorage)
+    setFormSubmitted(true);
+    formDataValidator(formData, setErrors)
   };
   return (
     <div className="form-container">
@@ -47,7 +79,7 @@ function SignInForm() {
         {/* Email Input field */}
         <div
           className={`inputfield ${formData.emailOrPhone.trim() !== "" ? "inputfield-value" : ""
-            }`}
+            } ${errors.email ? "error-input" : ""}`}
         >
           <input
             type="text"
@@ -57,12 +89,13 @@ function SignInForm() {
             onChange={emailChangeHanlder}
           />
           <label htmlFor="email">Email or Phone Number</label>
+          {errors.email && <p>{errors.email}</p>}
         </div>
 
         {/* Password Input Field */}
         <div
           className={`inputfield password ${formData.password.trim() !== "" ? "inputfield-value" : ""
-            }`}
+            } ${errors.password ? "error-input" : ""}`}
         >
           <input
             type={`${isPasswordHidden ? "password" : "text"}`}
@@ -75,6 +108,7 @@ function SignInForm() {
           <span onClick={showPassword}>
             <FontAwesomeIcon icon={isPasswordHidden ? faEye : faEyeSlash} />
           </span>
+          {errors.password && <p>{errors.password}</p>}
         </div>
 
         <div className="form-btns">

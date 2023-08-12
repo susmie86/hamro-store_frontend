@@ -14,6 +14,7 @@ const initialState = {
   todaysSales: [...todaysSales],
   bestSellingProducts: [...bestSellingProducts],
   ourProducts: [...ourProducts],
+  user: null
 };
 
 // Creating a Context

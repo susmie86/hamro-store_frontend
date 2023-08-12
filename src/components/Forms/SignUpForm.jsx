@@ -6,6 +6,7 @@ import { getFromLocalStorage, setToLocalStorage } from "../../Utils/localStorage
 import { NavLink } from "react-router-dom";
 import formDataValidator from "../../Utils/FormValidator";
 import { toast } from "react-toastify";
+import { v4 as uuid } from "uuid"
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -30,12 +31,18 @@ function SignUpForm() {
     }
 
     if (isFormValid) {
+      const userId = uuid();
+      const { name, emailOrPhone, password } = formData;
       // to Prevent form data to be stored in local storage without submit
-      if (isFormSubmitted)
-        setToLocalStorage("user", formData);
+      if (isFormSubmitted) {
+        console.log(isFormSubmitted)
+        setToLocalStorage("user", { uuid: userId, name, emailOrPhone, password });
+      }
       // to check if form data is stored in local storage or not
-      if (getFromLocalStorage("user"))
+      if (getFromLocalStorage("user")) {
+        console.log(getFromLocalStorage("user"));
         toast.success("Sign up successfull.")
+      }
       // Clear inputfield after form submission
       setFormData({
         name: "",
@@ -92,7 +99,7 @@ function SignUpForm() {
   const formSignUpHandler = (event) => {
     event.preventDefault();
     setFormSubmitted(true); // tells that the form submit button is clicked.
-    formDataValidator(formData, setErrors)
+    formDataValidator(formData, setErrors, "signup")
   }
 
   return (
