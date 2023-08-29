@@ -5,12 +5,10 @@
   padding: 0 0.75em;
 }
 
-/* Button CSS */
+/* Common Button Styles */
 .btn {
-  background-color: var(--clr-btn-2);
   border-radius: 4px;
   border: none;
-  color: var(--clr-text-0);
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -22,10 +20,16 @@
 }
 
 .btn:hover {
-  /* background-color: var(--clr-btn-hover-2); */
   opacity: 0.5;
 }
 
+/* Primary Button */
+.btn.primary {
+  background-color: var(--clr-btn-2);
+  color: var(--clr-text-0);
+}
+
+/* Secondary Button */
 .btn.secondary {
   background: transparent;
   overflow: hidden;
@@ -49,12 +53,18 @@
   transform: translateX(0%);
 }
 
+/* Outline Button */
 .btn.outline {
   background: transparent;
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: var(--clr-text-2);
 }
-/* Button CSS */
+
+/* Add-to-Cart Button */
+.btn.add-to-cart {
+  background-color: #28a745;
+  color: #fff;
+}
 /* Log In SIde Image css */
 .side_image {
   display: none;

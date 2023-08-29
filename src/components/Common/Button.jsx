@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function Button({ children, type, classname, onClick }) {
+function Button({ children, type, classname, onClick, style }) {
   const navigate = useNavigate();
   const handleClick = () => {
     if (type === "button") {
@@ -11,7 +11,7 @@ function Button({ children, type, classname, onClick }) {
     }
   };
   return (
-    <button type={type} className={`btn ${classname}`} onClick={handleClick}>
+    <button type={type} className={`btn ${classname}`} style={style} onClick={handleClick}>
       {children}
     </button>
   );

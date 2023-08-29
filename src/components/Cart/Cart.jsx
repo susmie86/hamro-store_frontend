@@ -1,24 +1,45 @@
 import { useAppContext } from '../../Context/AppContext'
-import ProductCard from '../Common/ProductCard';
-function Cart() {
-    const { state } = useAppContext();
-    return (
-        <div className="carts">
-            <h1>Cart here:</h1>
-            {state.cart.map((product) => {
-                return <ProductCard key={product.id} {...product} showDiscount={false} />
-            })}
-        </div>
-    )
-}
+import Button from '../Common/Button';
+import "./Cart.css"
+import CartItem from './CartItem';
 
-// {
-//     // "id": "442db455-35aa-4fc4-a5b8-0003c47424e9",
-//     //     "imgPath": "/static/media/gamingMonitor.1d3cc4d415786e90ceee653a8497d4d1.svg",
-//     //         "productName": "IPS LCD gaming monitor"
-//     //             , "marketPrice": 400,
-//     //                 "discountPercent": 30,
-//     //                     "showDiscount": true
-// }
+function Cart() {
+    const { state, dispatch } = useAppContext();
+    if (state.cart.length > 0) {
+        return (
+            <section className='cart-section'>
+                <div className="cart-list">
+                    <h2>Shopping</h2>
+                    {state.cart.map((product) => {
+                        return <CartItem key={product.id} {...product} showDiscount={false} />
+                    })}
+                    <div className="button-list">
+                        <Button classname={"outline"}>return to shop</Button>
+                        <Button classname={"outline"}>update cart</Button>
+                    </div>
+                </div>
+                <div className="proceed-checkout">
+                    <h2>cart total</h2>
+                    <div className="proceed-checkout_item">
+                        <span>subtotal:</span>
+                        <span>$ 1000</span>
+                    </div>
+                    <div className="proceed-checkout_item">
+                        <span>Shipping:</span>
+                        <span>free </span>
+                    </div>
+                    <div className="proceed-checkout_item last">
+                        <span>total:</span>
+                        <span>$ 1000</span>
+                    </div>
+
+                    <Button classname={"primary"} style={{ padding: "1em 1.5em", margin: "auto" }}>Proceed to checkout</Button>
+                </div>
+            </section>
+        );
+    } else {
+        return <p>Nothing is in the cart.</p>
+    }
+}
 
 export default Cart
