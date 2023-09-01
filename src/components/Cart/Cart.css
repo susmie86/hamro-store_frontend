@@ -25,7 +25,7 @@
 }
 
 .cart-item__img {
-  background-color: #eeeeeeea;
+  background-color: #f5f5f5;
   border-radius: 5px;
   padding: 32px;
   width: 100%;
@@ -33,7 +33,8 @@
 
 .cart-item__img img {
   height: 100%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   object-fit: fill;
   width: 200px;
 }

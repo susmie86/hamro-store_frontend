@@ -3,6 +3,7 @@ import "./ProductCard.css";
 import Button from "./Button";
 import IconButton from "./IconButton";
 import { useAppContext } from "../../Context/AppContext";
+import { toast } from "react-toastify";
 
 function ProductCard({
   id,
@@ -30,13 +31,8 @@ function ProductCard({
       type: "ADD_TO_CART",
       payload: { id, imgPath, productName, marketPrice, discountPercent, showDiscount },
     });
-    console.log("Product to be added on the cart: " + id)
-    // if (cardFor === "wishlist") {
-    //   dispatch({
-    //     type: "REMOVE_FROM_WISHLIST",
-    //     payload: id
-    //   })
-    // }
+
+    toast.success("Product Added to cart.");
   };
 
   return (
