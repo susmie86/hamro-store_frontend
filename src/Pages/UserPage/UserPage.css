@@ -1,0 +1,11 @@
+.user-section{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 1.5em;
+}
+
+@media (min-width: 768px) {
+    .user-section {
+        grid-template-columns: 25% 74%;
+    }
+}

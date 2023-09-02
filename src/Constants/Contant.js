@@ -164,4 +164,41 @@ const quickLinks = [
     path: "/contact",
   },
 ];
-export { footerAccountLinks, navLinks, teams, plusPoint, services, quickLinks };
+
+const userNavigation = [
+  {
+    id: 1,
+    title: "my account",
+    path: "/user/account"
+  },
+  {
+    id: 2,
+    title: "my order",
+    path: "/user/order"
+  },
+  {
+    id: 3,
+    title: "my wishlist",
+    path: "/wishlist"
+  },
+  {
+    id: 4,
+    title: "account book",
+    path: "/user/address"
+  },
+  {
+    id: 5,
+    title: "account information",
+    path: "/user/edit"
+  }
+]
+
+export {
+  footerAccountLinks,
+  navLinks,
+  teams,
+  plusPoint,
+  services,
+  quickLinks,
+  userNavigation
+};

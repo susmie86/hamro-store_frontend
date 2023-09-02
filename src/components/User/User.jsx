@@ -1,10 +1,11 @@
 import React from 'react'
 import "./User.css"
+import Profile from './Profile'
 
 function User() {
-  return (
-    <div>User</div>
-  )
+    return (
+        <Profile />
+    )
 }
 
 export default User
