@@ -10,7 +10,8 @@ import { v4 as uuid } from "uuid"
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     emailOrPhone: "",
     password: "",
     confirmPassword: "",
@@ -45,7 +46,8 @@ function SignUpForm() {
       }
       // Clear inputfield after form submission
       setFormData({
-        name: "",
+        firstName: "",
+        lastName: "",
         emailOrPhone: "",
         password: "",
         confirmPassword: "",
@@ -71,9 +73,15 @@ function SignUpForm() {
   };
 
   //Input change handler
-  const nameChangeHanlder = (event) => {
+  const firstNameChangeHanlder = (event) => {
     setFormData((prevFormData) => {
-      return { ...prevFormData, name: event.target.value };
+      return { ...prevFormData, firstName: event.target.value };
+    });
+  };
+
+  const lastNameChangeHanlder = (event) => {
+    setFormData((prevFormData) => {
+      return { ...prevFormData, lastName: event.target.value };
     });
   };
 
@@ -112,20 +120,36 @@ function SignUpForm() {
 
       {/* FORM  */}
       <form onSubmit={formSignUpHandler}>
-        {/* User Name Input FIeld */}
+        {/* first Name Input FIeld */}
         <div
-          className={`inputfield ${formData.name.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.name ? "error-input" : ""}`}
+          className={`inputfield ${formData.firstName.trim() !== "" ? "inputfield-value" : ""
+            } ${errors.lastName ? "error-input" : ""}`}
         >
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={nameChangeHanlder}
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={firstNameChangeHanlder}
           />
-          <label htmlFor="name">Name</label>
-          {errors.name && <p>{errors.name}</p>}
+          <label htmlFor="firstName">First Name</label>
+          {errors.firstName && <p>{errors.firstName}</p>}
+        </div>
+
+        {/* Last Name input field */}
+        <div
+          className={`inputfield ${formData.lastName.trim() !== "" ? "inputfield-value" : ""
+            } ${errors.lastName ? "error-input" : ""}`}
+        >
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={lastNameChangeHanlder}
+          />
+          <label htmlFor="lastName">Last Name</label>
+          {errors.lastName && <p>{errors.lastName}</p>}
         </div>
 
         {/* User Email or Phone Number Field */}

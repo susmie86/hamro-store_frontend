@@ -1,17 +1,27 @@
 const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-export default function formDataValidator({ name, emailOrPhone, password, confirmPassword }, setErrors, validatorFor) {
-    // Validate UserName Field
+export default function formDataValidator({ firstName,lastName, emailOrPhone, password, confirmPassword }, setErrors, validatorFor) {
+    // Validate first Name Field
     if (validatorFor === "signup") {
-        if (name.trim() === '') {
+        if (firstName.trim() === '') {
             setErrors((prevErrors) => {
-                return { ...prevErrors, name: "Username is required." }
+                return { ...prevErrors, firstName: "first name is required." }
             })
         } else {
             setErrors(prevErrors => {
-                return { ...prevErrors, name: "" }
+                return { ...prevErrors, firstName: "" }
             });
         }
 
+        // Validate last name field 
+        if (lastName.trim() === '') {
+            setErrors((prevErrors) => {
+                return { ...prevErrors, lastName: "last name is required." }
+            })
+        } else {
+            setErrors(prevErrors => {
+                return { ...prevErrors, lastName: "" }
+            });
+        }
         // Validate password for
         if (confirmPassword !== password) {
             setErrors(prevErrors => {
