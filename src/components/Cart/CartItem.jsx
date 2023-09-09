@@ -13,7 +13,6 @@ function CartItem({ id, productName, quantity, imgPath, discountPercent, marketP
     const increaseQuantity = () => {
         dispatch({ type: "INCREASE_QUANTITY", payload: id });
     }
-
     const decreaseQuantity = () => {
         if (quantity > 1) {
             dispatch({ type: "DECREASE_QUANTITY", payload: id });
