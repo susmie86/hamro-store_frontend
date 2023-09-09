@@ -36,6 +36,7 @@
 }
 
 .inputfield label {
+  text-transform: capitalize;
   color: var(--clr-text-2);
   left: 11px;
   padding: 0 5px;

@@ -25,13 +25,45 @@ function Reducer(state, action) {
       // return { ...state, cart: [...state.cart, action.payload] }
     }
     case "ADD_ALL_TO_CART": {
-      // Find the wishlist items using the ids from the payload
-      const itemsToAdd = state.wishlist.filter(
-        (item) => action.payload.includes(item.id)
+      // Find the wishlist items using the IDs from the payload
+      const itemsToAdd = state.wishlist.filter((item) =>
+        action.payload.includes(item.id)
       );
-      // Add the found wishlist items to the cart
-      return { ...state, cart: [...state.cart, ...itemsToAdd] };
+    
+      // Create a copy of the cart
+      const updatedCart = [...state.cart];
+    
+      // Create a map to track quantity changes
+      const quantityChanges = new Map();
+    
+      // Iterate through the items to add
+      itemsToAdd.forEach((itemToAdd) => {
+        const itemId = itemToAdd.id;
+    
+        // Check if the item already exists in the cart
+        const existingCartItemIndex = updatedCart.findIndex(
+          (cartItem) => cartItem.id === itemId
+        );
+    
+        if (existingCartItemIndex !== -1) {
+          // If the item already exists in the cart, increase its quantity by 1
+          // But first, check if we've already increased its quantity in this action
+          if (!quantityChanges.has(itemId)) {
+            updatedCart[existingCartItemIndex].quantity += 1;
+            // Mark that we've increased the quantity for this item in this action
+            quantityChanges.set(itemId, true);
+          }
+        } else {
+          // If the item is not in the cart, add it to the updatedCart with a quantity of 1
+          updatedCart.push({ ...itemToAdd, quantity: 1 });
+        }
+      });
+    
+      // Return the updated state with the modified cart
+      return { ...state, cart: updatedCart };
     }
+    
+    
     case "REMOVE_FROM_CART": {
       return {
         ...state,

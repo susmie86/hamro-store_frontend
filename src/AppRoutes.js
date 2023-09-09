@@ -8,12 +8,10 @@ import HomePage from "./Pages/HomePage.jsx";
 import WishlistPage from "./Pages/WishlistPage.jsx";
 import CartPage from "./Pages/CartPage.jsx";
 import AccountPage from "./Pages/AccountPage.jsx";
+import UserPageLayout from "./Pages/UserPage/UserPageLayout.jsx";
+import EditProfile from "./Pages/UserPage/EditProfile.jsx"
 
 const AppRoutes = [
-  {
-    path: "/my-account",
-    element: <AccountPage />
-  },
   {
     index: true,
     element: <HomePage />,
@@ -23,8 +21,28 @@ const AppRoutes = [
     element: <About />,
   },
   {
+    path: "/cart",
+    element: <CartPage />,
+  },
+  {
     path: "/contact",
     element: <ContactPage />,
+  },
+  {
+    path: "/user/edit",
+    element: <EditProfile />
+  },
+  {
+    path: "/my-account",
+    element: <AccountPage />
+  },
+  {
+    path: "/user",
+    element: <UserPageLayout />
+  },
+  {
+    path: "/user/edit",
+    element: <EditProfile />
   },
   {
     path: "/signup",
@@ -37,10 +55,6 @@ const AppRoutes = [
   {
     path: "/wishlist",
     element: <WishlistPage />,
-  },
-  {
-    path: "/cart",
-    element: <CartPage />,
   },
   {
     path: "/404",

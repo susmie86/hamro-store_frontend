@@ -10,7 +10,6 @@ import {
 const initialState = {
   cart: [],
   wishlist: [],
-  user: null,
   todaysSales: [...todaysSales],
   bestSellingProducts: [...bestSellingProducts],
   ourProducts: [...ourProducts],

@@ -1,38 +1,54 @@
-import { useState } from "react";
-import "./Navigation.css";
-import NavBar from "./NavBar";
-import NavIcons from "./NavIcons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import Container from "../Common/Container";
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import "./Navigation.css"
+import Container from '../Common/Container'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import CartIcon from '../../assets/Icons/CartIcon'
+import WishlistIcon from '../../assets/Icons/WishlistIcon'
+import { useAppContext } from '../../Context/AppContext'
+import NavLinks from './NavLinks'
 
 function Navigation() {
-  let [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen((prevIsMenuOpen) => {
-      return !prevIsMenuOpen;
-    });
-  };
-  return (
-    <nav className="header">
-      <Container>
-        <div className="navigation">
-          <h3 className="logo">
-            Hamro <span>Store</span>
-          </h3>
+    const { state } = useAppContext();
+    const [isMenuClicked, setIsMenuClicked] = useState(false);
 
-          <div className={`links ${isMenuOpen ? "show-menu" : ""}`}>
-            <NavBar />
-            <NavIcons />
-          </div>
+    // Show Mobile Menu on hamburger click
+    const showMenu = () => {
+        setIsMenuClicked(true);
+    }
+    return (
+        <Container>
+            <nav className="navbar">
+                <h1 className="navbar__logo">
+                    hamro <span>store</span>
+                </h1>
 
-          <div className="hamburger-menu" onClick={toggleMenu}>
-            <FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
-          </div>
-        </div>
-      </Container>
-    </nav>
-  );
+                <NavLinks setIsMenuClicked={setIsMenuClicked} className={isMenuClicked ? "mobile-menu" : ""} />
+
+                <div className="navbar__hamburger" onClick={showMenu}>
+                    <FontAwesomeIcon icon={faBarsStaggered} />
+                </div>
+
+                <ul className="navbar__icons">
+                    <li className="navbar__icon">
+                        <Link to={"/cart"}>
+                            <CartIcon />
+                        </Link>
+                        <span className="navbar__icon-badge">{state.cart.length}</span>
+                    </li>
+
+                    <li className="navbar__icon">
+                        <Link to={"/wishlist"}>
+                            <WishlistIcon />
+                        </Link>
+                        <span className="navbar__icon-badge">{state.wishlist.length}</span>
+                    </li>
+                </ul>
+            </nav>
+        </Container>
+    )
 }
 
-export default Navigation;
+export default Navigation

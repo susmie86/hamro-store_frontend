@@ -1,11 +1,11 @@
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../Context/AppContext'
 import Button from '../Common/Button';
 import "./Cart.css"
 import CartItem from './CartItem';
 
 function Cart() {
-    const { state, dispatch } = useAppContext();
+    const { state } = useAppContext();
     const navigative = useNavigate()
     const returnToHome = () => {
         navigative("/");
