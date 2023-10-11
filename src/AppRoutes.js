@@ -9,7 +9,8 @@ import WishlistPage from "./Pages/WishlistPage.jsx";
 import CartPage from "./Pages/CartPage.jsx";
 import AccountPage from "./Pages/AccountPage.jsx";
 import UserPageLayout from "./Pages/UserPage/UserPageLayout.jsx";
-import EditProfile from "./Pages/UserPage/EditProfile.jsx"
+import EditProfile from "./Pages/UserPage/EditProfile.jsx";
+import VerifyAccount from "./Pages/VerifyAccount.jsx";
 
 const AppRoutes = [
   {
@@ -30,23 +31,27 @@ const AppRoutes = [
   },
   {
     path: "/user/edit",
-    element: <EditProfile />
+    element: <EditProfile />,
   },
   {
     path: "/my-account",
-    element: <AccountPage />
+    element: <AccountPage />,
   },
   {
     path: "/user",
-    element: <UserPageLayout />
+    element: <UserPageLayout />,
   },
   {
     path: "/user/edit",
-    element: <EditProfile />
+    element: <EditProfile />,
   },
   {
     path: "/signup",
     element: <SignUpPage />,
+  },
+  {
+    path: "/signup/verify",
+    element: <VerifyAccount />,
   },
   {
     path: "/signIn",

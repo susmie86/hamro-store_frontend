@@ -1,27 +1,25 @@
-import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import Button from "../Common/Button";
-import { getFromLocalStorage, setToLocalStorage } from "../../Utils/localStorage";
-import { NavLink } from "react-router-dom";
-import formDataValidator from "../../Utils/FormValidator";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { v4 as uuid } from "uuid"
+import { signUpApiHandler } from "../../Utils/Axios";
+import formDataValidator from "../../Utils/FormValidator";
+import Button from "../Common/Button";
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
     firstName: "",
-    lastName: "",
-    emailOrPhone: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true); //to hide and display confirm password
-  const [isFormSubmitted, setFormSubmitted] = useState(false); // to check if user clicked the submit button or not
-  let isFormValid = true;
 
+  const navigate = useNavigate();
+  let isFormValid = true;
   // Based on validation set data on local storage
   useEffect(() => {
     for (const error in errors) {
@@ -30,34 +28,9 @@ function SignUpForm() {
         break;
       }
     }
-
-    if (isFormValid) {
-      const userId = uuid();
-      const { name, emailOrPhone, password } = formData;
-      // to Prevent form data to be stored in local storage without submit
-      if (isFormSubmitted) {
-        console.log(isFormSubmitted)
-        setToLocalStorage("user", { uuid: userId, name, emailOrPhone, password });
-      }
-      // to check if form data is stored in local storage or not
-      if (getFromLocalStorage("user")) {
-        console.log(getFromLocalStorage("user"));
-        toast.success("Sign up successfull.")
-      }
-      // Clear inputfield after form submission
-      setFormData({
-        firstName: "",
-        lastName: "",
-        emailOrPhone: "",
-        password: "",
-        confirmPassword: "",
-      });
-
-    } else {
-      // If signup failed. give a toast message
-      toast.error("Sign Up failed.");
+    if (!isFormValid) {
+      toast.error("Enter all fields correctly");
     }
-    // console.log(errors)
   }, [errors]);
 
   //   Function for Showing and Hiding password
@@ -87,7 +60,7 @@ function SignUpForm() {
 
   const emailChangeHanlder = (event) => {
     setFormData((prevFormData) => {
-      return { ...prevFormData, emailOrPhone: event.target.value };
+      return { ...prevFormData, email: event.target.value };
     });
   };
 
@@ -104,15 +77,43 @@ function SignUpForm() {
   };
 
   // Function to check If the form is valid or not.
-  const formSignUpHandler = (event) => {
+  const formSignUpHandler = async (event) => {
     event.preventDefault();
-    setFormSubmitted(true); // tells that the form submit button is clicked.
-    formDataValidator(formData, setErrors, "signup")
-  }
+    formDataValidator(formData, setErrors, "signup");
+
+    // If there is not error then it means we are good to go
+    if (isFormValid) {
+      const response = await signUpApiHandler(formData);
+
+      if (response.data.status === "Success") {
+        toast.success(response.data.message);
+
+        sessionStorage.setItem("email", formData.email);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        navigate("/signup/verify");
+      } else {
+        if (
+          response.data.message ===
+          "This user is already registered and verified."
+        ) {
+          toast.error(response.data.message);
+          navigate("/signin");
+        } else {
+          toast.error(response.data.message);
+          navigate("/signup/verify");
+        }
+      }
+    }
+  };
 
   return (
     <div className="form-container">
-
       <div className="form-title">
         <h2>Create an account</h2>
         <p>Enter your details below</p>
@@ -122,8 +123,9 @@ function SignUpForm() {
       <form onSubmit={formSignUpHandler}>
         {/* first Name Input FIeld */}
         <div
-          className={`inputfield ${formData.firstName.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.lastName ? "error-input" : ""}`}
+          className={`inputfield ${
+            formData.firstName?.trim() !== "" ? "inputfield-value" : ""
+          } ${errors.lastName ? "error-input" : ""}`}
         >
           <input
             type="text"
@@ -138,8 +140,9 @@ function SignUpForm() {
 
         {/* Last Name input field */}
         <div
-          className={`inputfield ${formData.lastName.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.lastName ? "error-input" : ""}`}
+          className={`inputfield ${
+            formData.lastName?.trim() !== "" ? "inputfield-value" : ""
+          } ${errors.lastName ? "error-input" : ""}`}
         >
           <input
             type="text"
@@ -154,24 +157,26 @@ function SignUpForm() {
 
         {/* User Email or Phone Number Field */}
         <div
-          className={`inputfield ${formData.emailOrPhone.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.email ? "error-input" : ""}`}
+          className={`inputfield ${
+            formData.email?.trim() !== "" ? "inputfield-value" : ""
+          } ${errors.email ? "error-input" : ""}`}
         >
           <input
             type="text"
             id="email"
             name="email"
-            value={formData.emailOrPhone}
+            value={formData.email}
             onChange={emailChangeHanlder}
           />
-          <label htmlFor="email">Email or Phone Number</label>
+          <label htmlFor="email">Email</label>
           {errors.email && <p>{errors.email}</p>}
         </div>
 
         {/* User Password Input Field */}
         <div
-          className={`inputfield password ${formData.password.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.password ? "error-input" : ""}`}
+          className={`inputfield password ${
+            formData.password?.trim() !== "" ? "inputfield-value" : ""
+          } ${errors.password ? "error-input" : ""}`}
         >
           <input
             type={`${isPasswordHidden ? "password" : "text"}`}
@@ -187,8 +192,9 @@ function SignUpForm() {
           {errors.password && <p>{errors.password}</p>}
         </div>
         <div
-          className={`inputfield password ${formData.confirmPassword.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.confirmPassword ? "error-input" : ""}`}
+          className={`inputfield password ${
+            formData.confirmPassword?.trim() !== "" ? "inputfield-value" : ""
+          } ${errors.confirmPassword ? "error-input" : ""}`}
         >
           <input
             type={`${isConfirmPasswordHidden ? "password" : "text"}`}
@@ -209,11 +215,15 @@ function SignUpForm() {
           <Button type="submit" classname="primary">
             create account
           </Button>
-          <p>Already have account? <NavLink to='/signin' className="pageRoute">log in</NavLink></p>
+          <p>
+            Already have account?{" "}
+            <NavLink to="/signin" className="pageRoute">
+              log in
+            </NavLink>
+          </p>
           {/* <NavLink to="/forgetPassword">forget password?</NavLink> */}
         </div>
       </form>
-
     </div>
   );
 }

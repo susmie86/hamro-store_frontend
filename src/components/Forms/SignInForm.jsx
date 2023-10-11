@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import "./Form.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAppContext } from "../../Context/AppContext";
+import formDataValidator from "../../Utils/FormValidator";
 import { getFromLocalStorage } from "../../Utils/localStorage";
 import Button from "../Common/Button";
-import formDataValidator from "../../Utils/FormValidator";
-import { useAppContext } from "../../Context/AppContext"
-import { toast } from "react-toastify";
+import "./Form.css";
 
 function SignInForm() {
-  const [formData, setFormData] = useState({ emailOrPhone: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   let [isPasswordHidden, setIsPasswordHidden] = useState(true);
   let [isFormSubmitted, setFormSubmitted] = useState(false);
@@ -38,7 +38,7 @@ function SignInForm() {
         toast.success("Log in successfull");
       }
       setFormData({
-        emailOrPhone: "",
+        email: "",
         password: ""
       });
     } else {
@@ -48,7 +48,7 @@ function SignInForm() {
   // functions for setting handling change in input field
   const emailChangeHanlder = (event) => {
     setFormData((prevFormData) => {
-      return { ...prevFormData, emailOrPhone: event.target.value };
+      return { ...prevFormData, email: event.target.value };
     });
   };
 
@@ -78,14 +78,14 @@ function SignInForm() {
       <form onSubmit={formSubmitHandler}>
         {/* Email Input field */}
         <div
-          className={`inputfield ${formData.emailOrPhone.trim() !== "" ? "inputfield-value" : ""
+          className={`inputfield ${formData.email.trim() !== "" ? "inputfield-value" : ""
             } ${errors.email ? "error-input" : ""}`}
         >
           <input
             type="text"
             id="email"
             name="email"
-            value={formData.emailOrPhone}
+            value={formData.email}
             onChange={emailChangeHanlder}
           />
           <label htmlFor="email">Email or Phone Number</label>
