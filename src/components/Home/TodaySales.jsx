@@ -3,9 +3,15 @@ import SectionHeader from "../Common/SectionHeader";
 import Button from "../Common/Button";
 import Rating from "../Common/Rating";
 import { useAppContext } from "../../Context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 function TodaySales() {
+  const navigate = useNavigate();
   const { state } = useAppContext();
+  const viewAllProductsHandler = () => {
+    navigate("/products/todays-sales");
+    console.log("viewAllProductsHandler");
+  };
   return (
     <>
       <section className="product-section">
@@ -27,7 +33,11 @@ function TodaySales() {
           })}
         </div>
         <div className="section-bottom">
-          <Button type={`button`} classname={`primary`}>
+          <Button
+            type={`button`}
+            classname={`primary`}
+            onClick={viewAllProductsHandler}
+          >
             view all products
           </Button>
         </div>

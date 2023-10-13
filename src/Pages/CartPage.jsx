@@ -1,18 +1,11 @@
-import Navigation from "../components/Navigation/Navigation"
-import Container from '../components/Common/Container'
-import RoadMap from "../components/Common/RoadMap"
-import Footer from "../components/Footer/Footer"
-import Cart from "../components/Cart/Cart"
+import Cart from "../components/Cart/Cart";
+import PageLayout from "../components/Layouts/PageLayout";
 function CartPage() {
   return (
-    <>
-      <Navigation />
-      <Container>
-        <RoadMap />
-        <Cart />
-      </Container>
-      <Footer />
-    </>)
+    <PageLayout>
+      <Cart />
+    </PageLayout>
+  );
 }
 
-export default CartPage
+export default CartPage;

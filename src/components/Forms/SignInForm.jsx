@@ -1,22 +1,20 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAppContext } from "../../Context/AppContext";
 import formDataValidator from "../../Utils/FormValidator";
-import { getFromLocalStorage } from "../../Utils/localStorage";
+import Cookies from "js-cookie";
 import Button from "../Common/Button";
 import "./Form.css";
+import { signInApiHandler } from "../../Utils/Axios";
 
 function SignInForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   let [isPasswordHidden, setIsPasswordHidden] = useState(true);
-  let [isFormSubmitted, setFormSubmitted] = useState(false);
   let isFormValid = true;
-
-  const { state, dispatch } = useAppContext();
 
   useEffect(() => {
     for (const error in errors) {
@@ -25,26 +23,7 @@ function SignInForm() {
         break;
       }
     }
-    if (isFormValid) {
-      const dataInLocalStorage = getFromLocalStorage("user");
-      if (isFormSubmitted) {
-        console.log(dataInLocalStorage);
-        dispatch({ type: "ADD_USER", payload: dataInLocalStorage });
-        console.log(dataInLocalStorage);
-
-      }
-      if (state.user?.name) {
-        console.log(state.user)
-        toast.success("Log in successfull");
-      }
-      setFormData({
-        email: "",
-        password: ""
-      });
-    } else {
-      toast.error("Log in failed.");
-    }
-  }, [errors, state.user?.uuid])
+  }, [errors]);
   // functions for setting handling change in input field
   const emailChangeHanlder = (event) => {
     setFormData((prevFormData) => {
@@ -64,10 +43,25 @@ function SignInForm() {
     });
   };
 
-  const formSubmitHandler = (event) => {
+  const formSubmitHandler = async (event) => {
     event.preventDefault();
-    setFormSubmitted(true);
-    formDataValidator(formData, setErrors)
+    formDataValidator(formData, setErrors);
+    if (isFormValid) {
+      const response = await signInApiHandler(formData);
+      if (response.data.status === "Success") {
+        toast.success(response.data.message);
+        Cookies.set("accessToken", response.data.data.accessToken, {
+          path: "/",
+          expires: 1,
+        });
+        Cookies.set("refreshToken", response.data.data.refreshToken, {
+          path: "/",
+          expires: 3,
+        });
+        navigate("/");
+        setFormData({ email: "", password: "" });
+      }
+    }
   };
   return (
     <div className="form-container">
@@ -78,8 +72,9 @@ function SignInForm() {
       <form onSubmit={formSubmitHandler}>
         {/* Email Input field */}
         <div
-          className={`inputfield ${formData.email.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.email ? "error-input" : ""}`}
+          className={`inputfield ${
+            formData.email.trim() !== "" ? "inputfield-value" : ""
+          } ${errors.email ? "error-input" : ""}`}
         >
           <input
             type="text"
@@ -94,8 +89,9 @@ function SignInForm() {
 
         {/* Password Input Field */}
         <div
-          className={`inputfield password ${formData.password.trim() !== "" ? "inputfield-value" : ""
-            } ${errors.password ? "error-input" : ""}`}
+          className={`inputfield password ${
+            formData.password.trim() !== "" ? "inputfield-value" : ""
+          } ${errors.password ? "error-input" : ""}`}
         >
           <input
             type={`${isPasswordHidden ? "password" : "text"}`}
@@ -115,8 +111,15 @@ function SignInForm() {
           <Button type="submit" classname="primary">
             log in
           </Button>
-          <NavLink to="/forgetPassword" className="forgetPass">forget password?</NavLink>
-          <p>don't have a account?<NavLink to='/signup' className='pageRoute'>sign up</NavLink></p>
+          <NavLink to="/forgetPassword" className="forgetPass">
+            forget password?
+          </NavLink>
+          <p>
+            don't have a account?
+            <NavLink to="/signup" className="pageRoute">
+              sign up
+            </NavLink>
+          </p>
         </div>
       </form>
     </div>

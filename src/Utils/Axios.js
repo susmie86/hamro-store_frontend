@@ -20,7 +20,7 @@ const signUpApiHandler = async ({ firstName, lastName, email, password }) => {
   return response;
 };
 
-const VerifyOTP = async (email, otp) => {
+const VerifyOTPApiHanlder = async (email, otp) => {
   const response = await customFetch.post("/auth/verify", {
     email,
     otp,
@@ -28,4 +28,31 @@ const VerifyOTP = async (email, otp) => {
   return response;
 };
 
-export { signUpApiHandler, VerifyOTP };
+const signInApiHandler = async ({ email, password }) => {
+  const response = await customFetch.post("/auth/signin", { email, password });
+  return response;
+};
+
+const getUserInfoApiHandler = async (accessToken) => {
+  const response = await customFetch.get("/auth/getUser", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return response;
+};
+
+const getProductsApiHandler = async (currentPage, pagelimit) => {
+  const response = await customFetch.get(
+    `/products?page=${currentPage}&limit=${pagelimit}`
+  );
+  return response;
+};
+
+export {
+  signUpApiHandler,
+  VerifyOTPApiHanlder,
+  signInApiHandler,
+  getUserInfoApiHandler,
+  getProductsApiHandler
+};

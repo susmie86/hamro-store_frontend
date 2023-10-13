@@ -1,23 +1,15 @@
-import Navigation from "../components/Navigation/Navigation";
-import Container from "../components/Common/Container";
 import SideImage from "../components/Common/SideImage";
 import SignUpForm from "../components/Forms/SignUpForm";
-import RoadMap from "../components/Common/RoadMap";
-import Footer from "../components/Footer/Footer";
+import PageLayout from "../components/Layouts/PageLayout";
 
 function SignUpPage() {
   return (
-    <>
-      <Navigation />
-      <Container>
-        <RoadMap />
-        <section className="section form-page">
-          <SideImage />
-          <SignUpForm />
-        </section>
-      </Container>
-      <Footer />
-    </>
+    <PageLayout>
+      <section className="section form-page">
+        <SideImage />
+        <SignUpForm />
+      </section>
+    </PageLayout>
   );
 }
 

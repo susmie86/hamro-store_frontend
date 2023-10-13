@@ -1,5 +1,6 @@
 import { v4 as uuid } from "uuid";
 import {
+  AmazonProduct,
   attractive_woman,
   bookSelf,
   camera,
@@ -32,6 +33,7 @@ const todaysSales = [
     isWished: true,
     rating: 5,
     review: 88,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -42,6 +44,7 @@ const todaysSales = [
     isWished: false,
     rating: 4,
     review: 75,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -52,6 +55,7 @@ const todaysSales = [
     isWished: false,
     rating: 5,
     review: 99,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -62,6 +66,7 @@ const todaysSales = [
     isWished: false,
     rating: 4.5,
     review: 99,
+    category: "Gaming",
   },
 ];
 
@@ -75,6 +80,7 @@ const bestSellingProducts = [
     isWished: false,
     rating: 5,
     review: 65,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -85,6 +91,7 @@ const bestSellingProducts = [
     isWished: false,
     rating: 4.5,
     review: 65,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -95,6 +102,7 @@ const bestSellingProducts = [
     isWished: false,
     rating: 4.5,
     review: 65,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -105,33 +113,49 @@ const bestSellingProducts = [
     isWished: false,
     rating: 5,
     review: 65,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: AmazonProduct,
+    productName: "Amazon Product",
+    marketPrice: 360,
+    discountPercent: 0,
+    isWished: false,
+    rating: 5,
+    review: 65,
+    category: "Gaming",
   },
 ];
 
 const newArrivals = [
   {
-    id: uuid(),
+    id: 1,
     productName: "playstation 5",
     description: "Black and White version of the PS5 coming out on sale.",
     imgPath: ps5Slim,
+    category: "Gaming",
   },
   {
-    id: uuid(),
+    id: 2,
     productName: "women's collections",
     description: "Featured woman collections that give you another vibe.",
     imgPath: attractive_woman,
+    category: "Gaming",
   },
   {
-    id: uuid(),
+    id: 3,
     productName: "speakers",
     description: "Amazon wireless speakers",
     imgPath: speakers,
+    category: "Gaming",
   },
   {
-    id: uuid(),
+    id: 4,
     productName: "perfume",
     description: "gucci intense OUD EDP",
     imgPath: gucci_perfume,
+    category: "Gaming",
   },
 ];
 
@@ -145,6 +169,7 @@ const ourProducts = [
     isWished: false,
     rating: 3,
     review: 35,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -155,6 +180,7 @@ const ourProducts = [
     isWished: false,
     rating: 4,
     review: 95,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -165,6 +191,7 @@ const ourProducts = [
     isWished: false,
     rating: 5,
     review: 325,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -175,6 +202,7 @@ const ourProducts = [
     isWished: false,
     rating: 4,
     review: 145,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -185,6 +213,7 @@ const ourProducts = [
     isWished: false,
     rating: 5,
     review: 65,
+    category: "HeadPhones",
   },
   {
     id: uuid(),
@@ -195,6 +224,7 @@ const ourProducts = [
     isWished: false,
     rating: 5,
     review: 35,
+    category: "HeadPhones",
   },
   {
     id: uuid(),
@@ -205,6 +235,7 @@ const ourProducts = [
     isWished: false,
     rating: 4.5,
     review: 55,
+    category: "Gaming",
   },
   {
     id: uuid(),
@@ -215,7 +246,96 @@ const ourProducts = [
     isWished: false,
     rating: 4.5,
     review: 55,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: cesar_chocolate,
+    productName: "breed dry dog food",
+    marketPrice: 100,
+    discountPercent: 0,
+    isWished: false,
+    rating: 3,
+    review: 35,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: camera,
+    productName: "canon EOS DSLR camera",
+    marketPrice: 360,
+    discountPercent: 0,
+    isWished: false,
+    rating: 4,
+    review: 95,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: ideapadGaming,
+    productName: "asus FHD gaming laptop",
+    marketPrice: 700,
+    discountPercent: 0,
+    isWished: false,
+    rating: 5,
+    review: 325,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: curology,
+    productName: "curology product set",
+    marketPrice: 500,
+    discountPercent: 0,
+    isWished: false,
+    rating: 4,
+    review: 145,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: electric_toy_car,
+    productName: "kids electric car",
+    marketPrice: 960,
+    discountPercent: 0,
+    isWished: false,
+    rating: 5,
+    review: 65,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: footballBoot,
+    productName: "jr. zoom soccer cleat",
+    marketPrice: 360,
+    discountPercent: 0,
+    isWished: false,
+    rating: 5,
+    review: 35,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: fantechController,
+    productName: "GP11 Shooter USB Gamepad",
+    marketPrice: 660,
+    discountPercent: 0,
+    isWished: false,
+    rating: 4.5,
+    review: 55,
+    category: "Gaming",
+  },
+  {
+    id: uuid(),
+    imgPath: jacket,
+    productName: "quilted satin jacket",
+    marketPrice: 660,
+    discountPercent: 0,
+    isWished: false,
+    rating: 4.5,
+    review: 55,
+    category: "Gaming",
   },
 ];
 
-export { todaysSales, bestSellingProducts, newArrivals, ourProducts };
+export { bestSellingProducts, newArrivals, ourProducts, todaysSales };

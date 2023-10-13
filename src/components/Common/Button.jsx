@@ -4,7 +4,7 @@ function Button({ children, type, classname, onClick, style }) {
   const navigate = useNavigate();
   const handleClick = () => {
     if (type === "button") {
-      navigate("/");
+      onClick();
     }
     if (type === "action") {
       onClick();

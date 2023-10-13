@@ -1,24 +1,16 @@
-import "./Page.css"
-import Navigation from "../components/Navigation/Navigation";
-import Container from "../components/Common/Container";
-import RoadMap from "../components/Common/RoadMap";
-import Footer from "../components/Footer/Footer";
+import "./Page.css";
 import Contact from "../components/Contact/Contact";
 import ContactForm from "../components/Forms/ContactForm";
+import PageLayout from "../components/Layouts/PageLayout";
 
 function ContactPage() {
   return (
-    <>
-      <Navigation />
-      <Container>
-        <RoadMap />
-        <section className="section contact-page">
-          <Contact />
-          <ContactForm />
-        </section>
-      </Container>
-      <Footer />
-    </>
+    <PageLayout>
+      <section className="section contact-page">
+        <Contact />
+        <ContactForm />
+      </section>
+    </PageLayout>
   );
 }
 

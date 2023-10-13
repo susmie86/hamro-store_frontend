@@ -112,12 +112,13 @@
 
 /* New Arrival Products */
 .arrival-card {
+  width: 100%;
   background: var(--clr-primary-1);
   border-radius: 4px;
   color: var(--clr-text-0);
   font-family: "Poppins", sans-serif;
   line-height: 21px;
-  max-width: 550px;
+  /* max-width: 550px; */
   padding: 2rem 1rem 0;
   min-height: max-content;
   position: relative;

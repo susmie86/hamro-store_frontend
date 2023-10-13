@@ -94,6 +94,70 @@
   text-align: center;
 }
 
+/* pagination css  */
+/* Add this CSS to your stylesheet */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.page {
+  margin: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style for nextLabel */
+.next {
+  width: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Style for previousLabel */
+.previous {
+  width: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Style for breakLabel */
+.break {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Style for nextLabel, previousLabel, and breakLabel on hover */
+.next:hover,
+.previous:hover,
+.break:hover {
+  cursor: pointer;
+}
+
+.page.active,
+.page:hover {
+  background-color: var(--clr-secondary-2);
+  color: #fff;
+  border: 1px solid var(--clr-secondary-2);
+}
+
+.page-link {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.page-link a {
+  display: block;
+  width: 100%;
+}
+
 @media (min-width: 992px) {
   .contact-page {
     grid-template-columns: 35% 62%;

@@ -18,6 +18,7 @@ import jacket from "./images/Product/jacket.svg";
 import mechanicalKeyboard from "./images/Product/mechanical-keyboard.svg";
 import ps5Slim from "./images/Product/ps5-slim.svg";
 import speakers from "./images/Product/speakers.svg";
+import AmazonProduct from "./images/Product/Amazon_product.jpeg"
 
 export {
   attractive_woman,
@@ -40,4 +41,5 @@ export {
   mechanicalKeyboard,
   ps5Slim,
   speakers,
+  AmazonProduct
 };

@@ -11,6 +11,7 @@ import AccountPage from "./Pages/AccountPage.jsx";
 import UserPageLayout from "./Pages/UserPage/UserPageLayout.jsx";
 import EditProfile from "./Pages/UserPage/EditProfile.jsx";
 import VerifyAccount from "./Pages/VerifyAccount.jsx";
+import ProductsPage from "./Pages/ProductsPage.jsx";
 
 const AppRoutes = [
   {
@@ -60,6 +61,14 @@ const AppRoutes = [
   {
     path: "/wishlist",
     element: <WishlistPage />,
+  },
+  {
+    path: "/products/:section",
+    element: <ProductsPage />,
+  },
+  {
+    path: "/products/:category",
+    element: <ProductsPage />,
   },
   {
     path: "/404",

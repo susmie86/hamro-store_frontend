@@ -10,11 +10,12 @@ import {
 const initialState = {
   cart: [],
   wishlist: [],
+  products: [...ourProducts, ...bestSellingProducts, ...todaysSales],
   todaysSales: [...todaysSales],
   bestSellingProducts: [...bestSellingProducts],
   ourProducts: [...ourProducts],
   user: null,
-  quantity: 0
+  quantity: 0,
 };
 
 // Creating a Context

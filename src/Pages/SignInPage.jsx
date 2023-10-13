@@ -1,24 +1,16 @@
 import "./Page.css";
-import Navigation from "../components/Navigation/Navigation";
 import SignInForm from "../components/Forms/SignInForm";
 import SideImage from "../components/Common/SideImage";
-import Container from "../components/Common/Container";
-import RoadMap from "../components/Common/RoadMap";
-import Footer from "../components/Footer/Footer";
+import PageLayout from "../components/Layouts/PageLayout";
 
 function SignIn() {
   return (
-    <>
-      <Navigation />
-      <Container>
-        <RoadMap />
-        <section className="section form-page">
-          <SideImage />
-          <SignInForm />
-        </section>
-      </Container>
-      <Footer />
-    </>
+    <PageLayout>
+      <section className="section form-page">
+        <SideImage />
+        <SignInForm />
+      </section>
+    </PageLayout>
   );
 }
 

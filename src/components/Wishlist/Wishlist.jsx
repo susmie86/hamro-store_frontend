@@ -14,16 +14,21 @@ function Wishlist() {
     dispatch({ type: "ADD_ALL_TO_CART", payload: wishlistItemIds });
 
     dispatch({ type: "REMOVE_ALL_FROM_WISHLIST" });
-
-  }
+  };
   return (
     <>
-      <section className='product-section'>
-        <div className='product-header'>
-          <h3 className='wishlist'>wishlist({state.wishlist.length})</h3>,
-          <Button classname={"outline"} type={`action`} onClick={moveAllProductToCart}>Move all to bag </Button>
+      <section className="product-section">
+        <div className="product-header">
+          <h3 className="wishlist">wishlist({state.wishlist.length})</h3>,
+          <Button
+            classname={"outline"}
+            type={`action`}
+            onClick={moveAllProductToCart}
+          >
+            Move all to bag{" "}
+          </Button>
         </div>
-        <div className='product-list wishlist'>
+        <div className="product-list wishlist">
           {state.wishlist.map((product) => {
             // console.log();
             return (

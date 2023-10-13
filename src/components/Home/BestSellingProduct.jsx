@@ -3,9 +3,16 @@ import ProductCard from "../Common/ProductCard";
 import Button from "../Common/Button";
 import Rating from "../Common/Rating";
 import { useAppContext } from "../../Context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 function BestSellingProduct() {
+  const navigate = useNavigate();
   const { state } = useAppContext();
+
+  const viewAllProductsHandler = () => {
+    console.log("viewAllProductsHandler running......");
+    navigate("/products/best-selling-products");
+  };
   return (
     <>
       <section className="product-section">
@@ -14,25 +21,31 @@ function BestSellingProduct() {
             title={"this month"}
             subtitle={"best selling products"}
           />
-          <Button type={`button`} classname={`primary`}>
+          <Button
+            type={`button`}
+            classname={`primary`}
+            onClick={viewAllProductsHandler}
+          >
             view all
           </Button>
         </div>
         <div className="product-list">
-          {state.bestSellingProducts.map((bestProduct) => {
-            return (
-              <ProductCard
-                key={bestProduct.id}
-                {...bestProduct}
-                showDiscount={false}
-                cardFor={"best selling products"}
-              >
-                <Rating
-                  rating={bestProduct.rating}
-                  reviews={bestProduct.review}
-                />
-              </ProductCard>
-            );
+          {state.bestSellingProducts.map((bestProduct, index) => {
+            if (index < 4) {
+              return (
+                <ProductCard
+                  key={bestProduct.id}
+                  {...bestProduct}
+                  showDiscount={false}
+                  cardFor={"Best Selling Products"}
+                >
+                  <Rating
+                    rating={bestProduct.rating}
+                    reviews={bestProduct.review}
+                  />
+                </ProductCard>
+              );
+            }
           })}
         </div>
       </section>

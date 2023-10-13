@@ -1,8 +1,7 @@
-.home-page hr {
+hr {
   border: 0.5px solid var(--clr-text-2);
   opacity: 0.25;
   margin: 60px auto;
-  /* border-color: red; */
 }
 
 .product-section {
@@ -29,13 +28,6 @@
   align-self: center;
 }
 
-/* Category CSS */
-
-/* Category CSS */
-
-/* New Arrivals css  */
-/* New Arrivals css  */
-
 @media (min-width: 475px) {
   .product-header {
     flex-direction: row;
@@ -48,6 +40,7 @@
     grid-template-columns: 50% 50%;
   }
   .product-list.new-arrivals {
+    /* border: 1px solid red; */
     grid-template-columns: 48% 48%;
   }
 }
@@ -57,7 +50,7 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   .product-list.new-arrivals {
-    grid-template-columns: 48% 24% 24%;
+    grid-template-columns: 48% 25% 25%;
   }
 }
 
