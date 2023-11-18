@@ -69,17 +69,19 @@ function Navigation() {
           {state.user ? (
             <li className="navbar__icon user">
               <button
-                onClick={() =>
-                  setShowModal((prevDropDown) => {
+                onClick={() => {
+                  console.log(showDropdown);
+                  setShowDropdown((prevDropDown) => {
                     return !prevDropDown;
-                  })
-                }
+                  });
+                }}
               >
-                {/* {showDropdown && (
-                  <OverlayModel closeModal={setShowDropdown}>
-                    <LogOut />
-                  </OverlayModel>
-                )}*/}
+                {showDropdown && (
+                  <DropDownMenu
+                    setShowDropdown={setShowDropdown}
+                    showDropdown={showDropdown}
+                  />
+                )}
                 <UserIcon />
               </button>
               {showModal && (

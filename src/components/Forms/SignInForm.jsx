@@ -13,6 +13,7 @@ function SignInForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const [callApi, setCallApi] = useState(false);
   let [isPasswordHidden, setIsPasswordHidden] = useState(true);
   let isFormValid = true;
 
@@ -23,7 +24,7 @@ function SignInForm() {
         break;
       }
     }
-  }, [errors]);
+  }, [errors, isFormValid, callApi]);
   // functions for setting handling change in input field
   const emailChangeHanlder = (event) => {
     setFormData((prevFormData) => {
@@ -46,8 +47,10 @@ function SignInForm() {
   const formSubmitHandler = async (event) => {
     event.preventDefault();
     formDataValidator(formData, setErrors);
-    if (isFormValid) {
+    setCallApi(true);
+    if (isFormValid && callApi) {
       const response = await signInApiHandler(formData);
+      setCallApi(false);
       if (response.data.status === "Success") {
         toast.success(response.data.message);
         Cookies.set("accessToken", response.data.data.accessToken, {
@@ -60,6 +63,8 @@ function SignInForm() {
         });
         navigate("/");
         setFormData({ email: "", password: "" });
+      } else if (response.data.status === "error") {
+        toast.error(response.data.message);
       }
     }
   };
@@ -69,7 +74,7 @@ function SignInForm() {
         <h2>Log in to Exclusive</h2>
         <p>Enter your details below</p>
       </div>
-      <form onSubmit={formSubmitHandler}>
+      <form onSubmit={formSubmitHandler} autoComplete="off">
         {/* Email Input field */}
         <div
           className={`inputfield ${
@@ -79,9 +84,10 @@ function SignInForm() {
           <input
             type="text"
             id="email"
-            name="email"
+            name="Email"
             value={formData.email}
             onChange={emailChangeHanlder}
+            autoComplete="off"
           />
           <label htmlFor="email">Email or Phone Number</label>
           {errors.email && <p>{errors.email}</p>}
@@ -96,9 +102,10 @@ function SignInForm() {
           <input
             type={`${isPasswordHidden ? "password" : "text"}`}
             id="password"
-            name="password"
+            name="Password"
             value={formData.password}
             onChange={passwordChangeHandler}
+            autoComplete="new-password"
           />
           <label htmlFor="password">Password</label>
           <span onClick={showPassword}>

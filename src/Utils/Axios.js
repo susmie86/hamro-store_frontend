@@ -1,15 +1,13 @@
 import axios from "axios";
 
-const accessToken = localStorage.getItem("access_token");
+// const accessToken = localStorage.getItem("access_token");
 
 // Defining a base url
 const customFetch = axios.create({
   baseURL: "http://localhost:5000/api",
-  headers: {
-    Authorization: `bearer ${accessToken}`,
-  },
 });
 
+// Handle signup request
 const signUpApiHandler = async ({ firstName, lastName, email, password }) => {
   const response = await customFetch.post("/auth/signup", {
     firstName,
@@ -49,10 +47,16 @@ const getProductsApiHandler = async (currentPage, pagelimit) => {
   return response;
 };
 
+const getAProductApiHandler = async (id) => {
+  const response = await customFetch.get(`/products/${id}`);
+  return response;
+};
+
 export {
   signUpApiHandler,
   VerifyOTPApiHanlder,
   signInApiHandler,
   getUserInfoApiHandler,
-  getProductsApiHandler
+  getProductsApiHandler,
+  getAProductApiHandler,
 };

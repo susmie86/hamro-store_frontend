@@ -83,6 +83,10 @@
   padding: 1em;
 }
 
+.quantity-button svg {
+  stroke: black;
+}
+
 .decrease {
   cursor: auto;
   opacity: 0.5;

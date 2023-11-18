@@ -14,8 +14,7 @@ export default class App extends Component {
             return <Route key={index} {...rest} element={element} />;
           })}
         </Routes>
-
-        <ToastContainer />
+        <ToastContainer autoClose={2000} draggable closeOnClick />
       </>
     );
   }

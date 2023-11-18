@@ -10,10 +10,12 @@ import Button from "../Common/Button";
 function SignUpForm() {
   const [formData, setFormData] = useState({
     firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const [callApi, setCallApi] = useState(false);
   const [errors, setErrors] = useState({});
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true); //to hide and display confirm password
@@ -28,10 +30,11 @@ function SignUpForm() {
         break;
       }
     }
+    console.log("call api: ", callApi);
     if (!isFormValid) {
       toast.error("Enter all fields correctly");
     }
-  }, [errors]);
+  }, [errors, isFormValid, callApi]);
 
   //   Function for Showing and Hiding password
   const showPassword = () => {
@@ -80,9 +83,9 @@ function SignUpForm() {
   const formSignUpHandler = async (event) => {
     event.preventDefault();
     formDataValidator(formData, setErrors, "signup");
-
+    setCallApi(true);
     // If there is not error then it means we are good to go
-    if (isFormValid) {
+    if (isFormValid && callApi) {
       const response = await signUpApiHandler(formData);
 
       if (response.data.status === "Success") {
@@ -96,6 +99,7 @@ function SignUpForm() {
           password: "",
           confirmPassword: "",
         });
+        setCallApi(false);
         navigate("/signup/verify");
       } else {
         if (
@@ -120,7 +124,7 @@ function SignUpForm() {
       </div>
 
       {/* FORM  */}
-      <form onSubmit={formSignUpHandler}>
+      <form onSubmit={formSignUpHandler} autoComplete="off">
         {/* first Name Input FIeld */}
         <div
           className={`inputfield ${
@@ -167,6 +171,7 @@ function SignUpForm() {
             name="email"
             value={formData.email}
             onChange={emailChangeHanlder}
+            autoComplete="off"
           />
           <label htmlFor="email">Email</label>
           {errors.email && <p>{errors.email}</p>}
@@ -184,6 +189,7 @@ function SignUpForm() {
             name="password"
             value={formData.password}
             onChange={passwordChangeHandler}
+            autoComplete="new-password"
           />
           <label htmlFor="password">Password</label>
           <span onClick={showPassword}>
@@ -202,6 +208,7 @@ function SignUpForm() {
             name="password"
             value={formData.confirmPassword}
             onChange={confirmPasswordChangeHandler}
+            autoComplete="new-password"
           />
           <label htmlFor="passwordConfirm">Confirm Password</label>
           <span onClick={showConfirmPassword}>

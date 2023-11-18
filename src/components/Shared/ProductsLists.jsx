@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SectionHeader from "../../components/Common/SectionHeader";
 import ProductCard from "../../components/Common/ProductCard";
 import Rating from "../../components/Common/Rating";

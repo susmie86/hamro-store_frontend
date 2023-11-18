@@ -1,0 +1,109 @@
+.product-details {
+  display: grid;
+  gap: 1%;
+  grid-template-columns: 59% 40%;
+}
+
+.product-details_imgs {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 25% 75%;
+}
+
+.product-details_thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-details_thumbnails {
+  max-width: 200px;
+}
+.thumbnail_item,
+.product-details_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.product-details_imgs img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/*************** Product Info section *****************/
+.info-main {
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-main .product-category {
+  text-align: start;
+  padding: 0;
+  font-weight: normal;
+  opacity: 0.75;
+}
+
+.info-main .product-price {
+  color: var(--clr-text-2);
+}
+
+.stock-review {
+  display: flex;
+  gap: 10px;
+  text-transform: capitalize;
+}
+
+.stock_info {
+  letter-spacing: 1.2px;
+  padding: 5px 10px;
+  color: var(--clr-btn-1);
+  line-height: 21px;
+  position: relative;
+}
+
+.stock_info.not-available {
+  color: red;
+}
+
+.stock_info::before {
+  position: absolute;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 1px;
+  height: 100%;
+  background-color: var(--clr-text-2);
+}
+
+.buy-products {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.buy-products .quantity-info {
+  overflow: hidden;
+}
+
+.buy-products .increase {
+    background-color: var(--clr-secondary-2);
+}
+
+.buy-products .increase svg {
+  stroke: var(--clr-text-0);
+}
+.wishlist-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.25em;
+    border: 1px solid var(--clr-text-2);
+}
+.wishlist-btn svg {
+    stroke: var(--clr-text-2);
+}

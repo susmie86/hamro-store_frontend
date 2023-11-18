@@ -35,6 +35,8 @@ function ProductCard({
     toast.success("Product Added to cart.");
   };
 
+  
+
   return (
     <div className='product-card' onMouseEnter={showBtn} onMouseLeave={hideBtn}>
       <div className='product-img__container'>
