@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import Button from "../Common/Button";
 import "./Form.css";
 import { signInApiHandler } from "../../Utils/Axios";
+import { setDataToCookies } from "../../Utils/cookieHandler";
 
 function SignInForm() {
   const navigate = useNavigate();
@@ -48,26 +49,27 @@ function SignInForm() {
     event.preventDefault();
     formDataValidator(formData, setErrors);
     setCallApi(true);
-    if (isFormValid && callApi) {
-      const response = await signInApiHandler(formData);
-      setCallApi(false);
-      if (response.data.status === "Success") {
-        toast.success(response.data.message);
-        Cookies.set("accessToken", response.data.data.accessToken, {
-          path: "/",
-          expires: 1,
-        });
-        Cookies.set("refreshToken", response.data.data.refreshToken, {
-          path: "/",
-          expires: 3,
-        });
-        navigate("/");
-        setFormData({ email: "", password: "" });
-      } else if (response.data.status === "error") {
-        toast.error(response.data.message);
-      }
-    }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      if (isFormValid && callApi) {
+        const response = await signInApiHandler(formData);
+        setCallApi(false);
+
+        if (response.data.status === "Success") {
+          toast.success(response.data.message);
+          setDataToCookies("accessToken", response.data.data.accessToken, 1);
+          setDataToCookies("refreshToken", response.data.data.refreshToken, 3);
+          navigate("/");
+          setFormData({ email: "", password: "" });
+        } else if (response.data.status === "error") {
+          toast.error(response.data.message);
+        }
+      }
+    };
+
+    fetchData(); // Call fetchData on every render
+  }, [isFormValid, callApi]);
   return (
     <div className="form-container">
       <div className="form-title">
