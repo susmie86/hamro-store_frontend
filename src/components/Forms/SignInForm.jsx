@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import formDataValidator from "../../Utils/FormValidator";
-import Cookies from "js-cookie";
 import Button from "../Common/Button";
 import "./Form.css";
 import { signInApiHandler } from "../../Utils/Axios";

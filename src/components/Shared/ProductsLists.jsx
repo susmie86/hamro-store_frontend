@@ -6,7 +6,7 @@ import { useAppContext } from "../../Context/AppContext";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
 import "../../Pages/Page.css";
-import { getProductsApiHandler } from "../../Utils/Axios";
+// import { getProductsApiHandler } from "../../Utils/Axios";
 
 function ProductLists() {
   let productsArray = [];
