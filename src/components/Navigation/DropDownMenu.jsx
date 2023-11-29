@@ -13,8 +13,8 @@ const DropdownMenu = ({ setShowDropdown, showDropdown }) => {
         <span>{`${state.user.firstName} ${state.user.lastName}`}</span>
       </h3>
       <ul>
-        <DropDownItem text={"My Profile"} />
-        <DropDownItem text={"Edit Profile"} />
+        <DropDownItem text={"My Profile"} link={"/user"} />
+        <DropDownItem text={"Edit Profile"} link={"/user/edit"} />
         <DropDownItem text={"Logout"} />
       </ul>
     </div>

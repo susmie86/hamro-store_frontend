@@ -48,10 +48,6 @@ const AppRoutes = [
     element: <UserPageLayout />,
   },
   {
-    path: "/user/edit",
-    element: <EditProfile />,
-  },
-  {
     path: "/signup",
     element: <SignUpPage />,
   },
