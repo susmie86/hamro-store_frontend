@@ -14,6 +14,7 @@ import UserIcon from "../../assets/Icons/UserIcon";
 import DropDownMenu from "./DropDownMenu";
 import OverlayModel from "../Common/OverlayModal";
 import LogOut from "../Common/LogOut";
+import { getDataFromCookies } from "../../Utils/cookieHandler";
 
 function Navigation() {
   const { state, dispatch } = useAppContext();
@@ -22,7 +23,7 @@ function Navigation() {
 
   useEffect(() => {
     (async () => {
-      const token = Cookies.get("accessToken");
+      const token = getDataFromCookies("accessToken");
       if (token) {
         const response = await getUserInfoApiHandler(token);
         dispatch({ type: "ADD_USER", payload: response.data.data });

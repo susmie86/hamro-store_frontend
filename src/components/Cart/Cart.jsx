@@ -59,8 +59,12 @@ function Cart() {
           </div>
 
           <Button
+            type={"action"}
             classname={"primary"}
             style={{ padding: "1em 1.5em", margin: "auto" }}
+            onClick={() => {
+              navigative("/cart/checkout");
+            }}
           >
             Proceed to checkout
           </Button>

@@ -12,6 +12,7 @@ import UserPageLayout from "./Pages/UserPage/UserPageLayout.jsx";
 import EditProfile from "./Pages/UserPage/EditProfile.jsx";
 import VerifyAccount from "./Pages/VerifyAccount.jsx";
 import ProductsPage from "./Pages/ProductsPage.jsx";
+import CheckoutPage from "./Pages/CheckoutPage.jsx";
 
 const AppRoutes = [
   {
@@ -29,6 +30,10 @@ const AppRoutes = [
   {
     path: "/contact",
     element: <ContactPage />,
+  },
+  {
+    path: "/cart/checkout",
+    element: <CheckoutPage />,
   },
   {
     path: "/user/edit",

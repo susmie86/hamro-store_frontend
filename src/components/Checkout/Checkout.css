@@ -1,0 +1,119 @@
+.checkout-container {
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 50px;
+  padding: 1rem 1rem;
+}
+.checkout-container h2.title {
+  border: 1px solid green;
+  color: var(--clr-text-2, #000);
+  font-family: "Inter";
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 1.44px;
+  line-height: 30px;
+}
+
+.checkout-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+}
+.form-container.checkout-form {
+  border: 1px solid greenyellow;
+  margin: 0;
+  flex-basis: 60%;
+  flex-grow: 2;
+}
+
+.form-container.checkout-form .inputfield span {
+  right: -5px;
+  color: red;
+}
+
+.checkout-summary {
+  flex-basis: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  overflow-y: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  text-transform: capitalize;
+  font-family: "Poppins", sans-serif;
+  line-height: 24px;
+  color: var(--clr-text-2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.order-item .item-img {
+  width: 60px;
+  height: 60px;
+  /* padding: 5px; */
+}
+
+.payment-options {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.payment-method {
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  padding: 1rem 0.5rem;
+  gap: 10px;
+  align-items: center;
+}
+.payment-method:hover {
+  background-color: #ede8e8;
+}
+.payment-options input[type="radio"] {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  accent-color: #ff5722;
+  border-radius: 50%;
+  background-color: #fcfafa;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 0.5rem;
+  border:0.2rem solid #000;
+}
+
+.payment-options input[type="radio"]:checked {
+  accent-color: #ff5722;
+  border: 0.2rem solid #ff5722;
+}
+
+.payment-options input[type="radio"]:focus-visible {
+  outline-offset: 0;
+}
+
+.payment-method label {
+  color: var(--clr-text-2);
+  font-family: "Poppins", sans-serif;
+  line-height: 24px;
+}
