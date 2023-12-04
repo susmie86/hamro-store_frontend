@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { VerifyOTPApiHanlder } from "../Utils/Axios";
 import Button from "../components/Common/Button";
 import SideImage from "../components/Common/SideImage";
-import { toast } from "react-toastify";
-import "./Page.css";
-import { VerifyOTPApiHanlder } from "../Utils/Axios";
-import { useNavigate } from "react-router-dom";
 import PageLayout from "../components/Layouts/PageLayout";
+import "./Page.css";
 
 function VerifyAccount() {
   const [otp, setOtp] = useState();
@@ -17,7 +17,6 @@ function VerifyAccount() {
   };
   const otpSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log(emailForVerification);
     const response = await VerifyOTPApiHanlder(emailForVerification, otp);
     if (response.data.status === "Success") {
       toast.success(response.data.message);

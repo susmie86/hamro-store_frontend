@@ -30,7 +30,6 @@ function SignUpForm() {
         break;
       }
     }
-    console.log("call api: ", callApi);
     if (!isFormValid) {
       toast.error("Enter all fields correctly");
     }

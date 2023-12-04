@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import "./Checkout.css";
-import CheckoutForm from "../Forms/CheckoutForm";
-import Button from "../Common/Button"
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../Context/AppContext";
+import Button from "../Common/Button";
+import CheckoutForm from "../Forms/CheckoutForm";
+import "./Checkout.css";
 function Checkout() {
   const { state } = useAppContext();
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
@@ -41,7 +41,7 @@ function Checkout() {
                 quantity,
                 marketPrice,
               }) => {
-                // console.log(product);
+                //  product);
                 return (
                   <li key={id} className="order-item">
                     <img src={imgPath} alt={productName} className="item-img" />

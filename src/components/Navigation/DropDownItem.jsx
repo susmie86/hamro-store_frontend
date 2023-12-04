@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function DropDownItem({ icon, text, link }) {
+function DropDownItem({ text, link }) {
   return (
     <li className="dropdownItem">
-      <img src={icon}></img>
       <Link to={link}> {text} </Link>
     </li>
   );

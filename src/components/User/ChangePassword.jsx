@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
 
 function ChangePassword() {
   const [formData, setFormData] = useState({
@@ -47,7 +47,6 @@ function ChangePassword() {
     });
   };
   const showConfirmNewPassword = () => {
-    console.log("showConfirmNewPassword", isPasswordHidden);
     setIsPasswordHidden((prevIsPasswordHidden) => {
       return {
         ...prevIsPasswordHidden,

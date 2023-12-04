@@ -1,7 +1,7 @@
 // import React from "react";
 import { useAppContext } from "../../Context/AppContext";
-import ProductCard from "../Common/ProductCard";
 import Button from "../Common/Button";
+import ProductCard from "../Common/ProductCard";
 import "./Wishlist.css";
 
 function Wishlist() {
@@ -30,7 +30,7 @@ function Wishlist() {
         </div>
         <div className="product-list wishlist">
           {state.wishlist.map((product) => {
-            // console.log();
+            //  );
             return (
               <ProductCard
                 key={product.id}

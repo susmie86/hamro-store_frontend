@@ -44,6 +44,11 @@
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  border-bottom: 1px solid #d5d5d5;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .user-navigation li {
   border-radius: 5px;
@@ -148,6 +153,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     border-right: 1px solid #d5d5d5;
+    border-bottom: none;
     text-align: left;
     max-width: 175px;
   }

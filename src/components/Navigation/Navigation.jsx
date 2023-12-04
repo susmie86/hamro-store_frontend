@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import "./Navigation.css";
-import Container from "../Common/Container";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CartIcon from "../../assets/Icons/CartIcon";
-import WishlistIcon from "../../assets/Icons/WishlistIcon";
 import { useAppContext } from "../../Context/AppContext";
-import NavLinks from "./NavLinks";
 import { getUserInfoApiHandler } from "../../Utils/Axios";
-import UserIcon from "../../assets/Icons/UserIcon";
-import DropDownMenu from "./DropDownMenu";
-import OverlayModel from "../Common/OverlayModal";
-import LogOut from "../Common/LogOut";
 import { getDataFromCookies } from "../../Utils/cookieHandler";
+import CartIcon from "../../assets/Icons/CartIcon";
+import UserIcon from "../../assets/Icons/UserIcon";
+import WishlistIcon from "../../assets/Icons/WishlistIcon";
+import Container from "../Common/Container";
+import LogOut from "../Common/LogOut";
+import OverlayModel from "../Common/OverlayModal";
+import DropDownMenu from "./DropDownMenu";
+import NavLinks from "./NavLinks";
+import "./Navigation.css";
 
 function Navigation() {
   const { state, dispatch } = useAppContext();
@@ -29,7 +28,7 @@ function Navigation() {
         dispatch({ type: "ADD_USER", payload: response.data.data });
       }
     })();
-  }, []);
+  }, [state.user]);
   const [isMenuClicked, setIsMenuClicked] = useState(false);
 
   // Show Mobile Menu on hamburger click
@@ -71,7 +70,6 @@ function Navigation() {
             <li className="navbar__icon user">
               <button
                 onClick={() => {
-                  console.log(showDropdown);
                   setShowDropdown((prevDropDown) => {
                     return !prevDropDown;
                   });

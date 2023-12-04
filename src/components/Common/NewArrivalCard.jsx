@@ -1,8 +1,7 @@
-import "./ProductCard.css";
 import Button from "./Button";
+import "./ProductCard.css";
 
 function NewArrivalCard({ id, imgPath, productName, description }) {
-  console.log("id: ", id);
   const classname = id === 1 ? "first" : id === 2 ? "second" : "";
   return (
     <div className={`arrival-card ${classname}`}>

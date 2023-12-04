@@ -151,10 +151,14 @@ h3 span {
 }
 
 .dropdown-menu ul li {
-  padding: 10px 0;
+  padding: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
-
+.dropdown-menu ul li a {
+  display: block;
+  padding: 10px 0;
+  width: 100%;
+}
 .dropdown-menu ul li:hover a {
   color: rgb(212, 33, 9);
   cursor: pointer;
@@ -166,20 +170,10 @@ h3 span {
 }
 
 .dropdownItem {
-  display: flex;
   margin: 10px auto;
 }
 
-.dropdownItem svg {
-  max-width: 20px;
-  margin-right: 10px;
-  opacity: 0.5;
-  transition: var(--speed);
-}
-
 .dropdownItem a {
-  max-width: 100px;
-  margin-left: 10px;
   transition: var(--speed);
 }
 

@@ -1,18 +1,19 @@
-import About from "./Pages/About.jsx";
-import ContactPage from "./Pages/ContactPage.jsx";
-import SignUpPage from "./Pages/SignUpPage.jsx";
-import SignInPage from "./Pages/SignInPage.jsx";
-import PageNotFound from "./Pages/PageNotFound.jsx";
 import { Navigate } from "react-router-dom";
-import HomePage from "./Pages/HomePage.jsx";
-import WishlistPage from "./Pages/WishlistPage.jsx";
+import About from "./Pages/About.jsx";
 import CartPage from "./Pages/CartPage.jsx";
-import AccountPage from "./Pages/AccountPage.jsx";
-import UserPageLayout from "./Pages/UserPage/UserPageLayout.jsx";
+import CheckoutPage from "./Pages/CheckoutPage.jsx";
+import ContactPage from "./Pages/ContactPage.jsx";
+import HomePage from "./Pages/HomePage.jsx";
+import PageNotFound from "./Pages/PageNotFound.jsx";
+import ProductsPage from "./Pages/ProductsPage.jsx";
+import SignInPage from "./Pages/SignInPage.jsx";
+import SignUpPage from "./Pages/SignUpPage.jsx";
+import AccountPage from "./Pages/UserPage/AccountPage.jsx";
 import EditProfile from "./Pages/UserPage/EditProfile.jsx";
 import VerifyAccount from "./Pages/VerifyAccount.jsx";
-import ProductsPage from "./Pages/ProductsPage.jsx";
-import CheckoutPage from "./Pages/CheckoutPage.jsx";
+import WishlistPage from "./Pages/WishlistPage.jsx";
+import UserPageLayout from "./components/Layouts/UserPageLayout.jsx";
+import PrivateRoutes from "./Utils/PrivateRoutes.jsx";
 
 const AppRoutes = [
   {
@@ -25,7 +26,11 @@ const AppRoutes = [
   },
   {
     path: "/cart",
-    element: <CartPage />,
+    element: (
+      <PrivateRoutes>
+        <CartPage />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "/contact",
@@ -33,19 +38,35 @@ const AppRoutes = [
   },
   {
     path: "/cart/checkout",
-    element: <CheckoutPage />,
+    element: (
+      <PrivateRoutes>
+        <CheckoutPage />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "/user/edit",
-    element: <EditProfile />,
+    element: (
+      <PrivateRoutes>
+        <EditProfile />
+      </PrivateRoutes>
+    ),
   },
   {
-    path: "/my-account",
-    element: <AccountPage />,
+    path: "/user/account",
+    element: (
+      <PrivateRoutes>
+        <AccountPage />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "/user",
-    element: <UserPageLayout />,
+    element: (
+      <PrivateRoutes>
+        <UserPageLayout />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "/signup",
@@ -61,7 +82,11 @@ const AppRoutes = [
   },
   {
     path: "/wishlist",
-    element: <WishlistPage />,
+    element: (
+      <PrivateRoutes>
+        <WishlistPage />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "/products/:section",

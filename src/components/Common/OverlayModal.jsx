@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import "./OverlayModal.css";
 
 function OverlayModel({ children, closeModal }) {
-  console.log(closeModal);
   return createPortal(
     <>
       <div className="backdrop" onClick={() => closeModal(false)} />

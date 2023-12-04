@@ -1,16 +1,15 @@
-import SectionHeader from "../Common/SectionHeader";
-import ProductCard from "../Common/ProductCard";
-import Button from "../Common/Button";
-import Rating from "../Common/Rating";
-import { useAppContext } from "../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../Context/AppContext";
+import Button from "../Common/Button";
+import ProductCard from "../Common/ProductCard";
+import Rating from "../Common/Rating";
+import SectionHeader from "../Common/SectionHeader";
 
 function BestSellingProduct() {
   const navigate = useNavigate();
   const { state } = useAppContext();
 
   const viewAllProductsHandler = () => {
-    console.log("viewAllProductsHandler running......");
     navigate("/products/best-selling-products");
   };
   return (

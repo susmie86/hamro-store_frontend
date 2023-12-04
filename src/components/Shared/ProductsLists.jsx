@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import SectionHeader from "../../components/Common/SectionHeader";
-import ProductCard from "../../components/Common/ProductCard";
-import Rating from "../../components/Common/Rating";
-import { useAppContext } from "../../Context/AppContext";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
+import { useAppContext } from "../../Context/AppContext";
 import "../../Pages/Page.css";
+import ProductCard from "../../components/Common/ProductCard";
+import Rating from "../../components/Common/Rating";
+import SectionHeader from "../../components/Common/SectionHeader";
 // import { getProductsApiHandler } from "../../Utils/Axios";
 
 function ProductLists() {
@@ -20,7 +20,7 @@ function ProductLists() {
   // useEffect(() => {
   //   (async () => {
   //     const response = await getProductsApiHandler(currentPage, itemsPerPage);
-  //     console.log(response.data.data);
+  //      response.data.data);
   //     setProducts(response.data);
   //   })();
   // }, [currentPage]);
@@ -37,7 +37,9 @@ function ProductLists() {
     productsArray = state.newArrivals;
   } else {
     // Filter products by category
-    productsArray = state.products.filter((product) => product.category === section);
+    productsArray = state.products.filter(
+      (product) => product.category === section
+    );
   }
 
   const handlePageChange = ({ selected }) => {

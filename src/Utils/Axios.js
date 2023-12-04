@@ -32,6 +32,15 @@ const signInApiHandler = async ({ email, password }) => {
   return response;
 };
 
+const logoutApiHandler = async () => {
+  const response = await customFetch.delete("/auth/logout", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return response;
+};
+
 // -------------------------------- Profile Api Handler -------------------------------- //
 const getUserInfoApiHandler = async (accessToken) => {
   const response = await customFetch.get("/profile/", {
@@ -195,6 +204,7 @@ export {
   signUpApiHandler,
   VerifyOTPApiHanlder,
   signInApiHandler,
+  logoutApiHandler,
   // User Profiles
   getUserInfoApiHandler,
   updateUserInfoApiHandler,
@@ -213,5 +223,5 @@ export {
   getAllProductsApiHandler,
   getSingleProductApiHandler,
   // Products Admin Side
-  addProductApiHandler
+  addProductApiHandler,
 };

@@ -1,50 +1,48 @@
 .card-logout {
-    transform: translateY(200%);
-    background-color: var(--background-color);
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    width: 350px;
-    padding: 1rem 1rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-logout p {
-    padding-top: 1rem;
-    font-size: var(--fs-normal);
-  }
-  
-  .card-logout > div {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .btn {
-    background-color: initial;
-    color: var(--secondary-color);
-    font-size: var(--fs-button);
-    font-weight: var(--fw-button);
-    transition: background-color 0.5s linear;
-  }
-  
-  .btn.agree {
-    color: #26b9ee;
-  }
-  
-  .btn.agree:hover {
-    color: white;
-    background-color: #26b9ee;
-  }
-  
-  .btn.disagree {
-    color: red;
-  }
-  
-  .btn.disagree:hover {
-    color: white;
-    background-color: red;
-  }
-  
+  background-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  width: 350px;
+  padding: 1rem 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-logout p {
+  padding-top: 1rem;
+  font-size: 1.125rem;
+}
+
+.card-logout > div {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  background-color: initial;
+  color: #344054;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.5s linear;
+}
+
+.btn.agree {
+  color: #26b9ee;
+}
+
+.btn.agree:hover {
+  color: white;
+  background-color: #26b9ee;
+}
+
+.btn.disagree {
+  color: red;
+}
+
+.btn.disagree:hover {
+  color: white;
+  background-color: red;
+}

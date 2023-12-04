@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getDataFromCookies } from "./Utils/cookieHandler";
 
 export default class App extends Component {
   static displayName = App.name;

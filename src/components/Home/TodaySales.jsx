@@ -1,16 +1,15 @@
-import ProductCard from "../Common/ProductCard";
-import SectionHeader from "../Common/SectionHeader";
-import Button from "../Common/Button";
-import Rating from "../Common/Rating";
-import { useAppContext } from "../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../Context/AppContext";
+import Button from "../Common/Button";
+import ProductCard from "../Common/ProductCard";
+import Rating from "../Common/Rating";
+import SectionHeader from "../Common/SectionHeader";
 
 function TodaySales() {
   const navigate = useNavigate();
   const { state } = useAppContext();
   const viewAllProductsHandler = () => {
     navigate("/products/todays-sales");
-    console.log("viewAllProductsHandler");
   };
   return (
     <>

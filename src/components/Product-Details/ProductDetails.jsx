@@ -20,7 +20,7 @@ function ProductDetails() {
   useEffect(() => {
     (async () => {
       const response = await getAProductApiHandler();
-      console.log(response);
+       response);
     })();
   }, [quantity]);
   const [largeImg, setLargeImg] = useState("");

@@ -12,7 +12,6 @@ function OurProducts() {
 
   const viewAllProductsHandler = () => {
     navigate("/products/our-products");
-    console.log("viewAllProductsHandler");
   };
 
   return (
